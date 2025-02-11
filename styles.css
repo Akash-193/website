@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+
 body {
-    font-family: Lato, sans-serif;
+    font-family: Nunito, sans-serif;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -19,7 +21,7 @@ header {
     font-size: 32px; /* Change font size */
     font-weight: bold;
     color: black; /* Change font color */
-    font-family: 'Lato', sans-serif; /* Change font style */
+    font-family: 'Nunito', sans-serif; /* Change font style */
 }
 
 /* Navigation Menu Styling */
@@ -39,7 +41,7 @@ nav ul li a {
     text-decoration: none;
     color: gray; /* Change font color */
     font-size: 18px; /* Change font size */
-    font-family: 'Lato', sans-serif; /* Change font style */
+    font-family: 'Nunito', sans-serif; /* Change font style */
 }
 
 nav ul li a.active {
@@ -51,14 +53,14 @@ nav ul li a.active {
 .content h1 {
     font-size: 32px; /* Change font size */
     color: black; /* Change font color */
-    font-family: 'Lato', sans-serif; /* Change font style */
+    font-family: 'Nunito', sans-serif; /* Change font style */
 }
 
 /* "Your description goes here." Styling */
 .description {
     font-size: 18px; /* Change font size */
     color: #333; /* Change font color */
-    font-family: 'Lato', sans-serif; /* Change font style */
+    font-family: 'Nunito', sans-serif; /* Change font style */
 }
 
 /* Horizontal Line Below Navigation */
