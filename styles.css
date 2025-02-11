@@ -5,38 +5,39 @@ body {
     text-align: center;
 }
 
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.logo img {
+    height: 50px;
+}
+
 nav ul {
     list-style: none;
-    padding: 0;
     display: flex;
-    justify-content: center;
-    background: white;
+    gap: 15px;
 }
 
 nav ul li {
-    margin: 0 15px;
+    display: inline;
 }
 
 nav ul li a {
     text-decoration: none;
     color: gray;
-    font-size: 18px;
+    font-weight: bold;
 }
 
 nav ul li a.active {
     color: black;
-    font-weight: bold;
-}
-
-.nav-line {
-    border: none;
-    height: 2px;
-    background: lightgray;
-    margin-top: 5px;
 }
 
 .slider-container {
-    position: relative;
     width: 80%;
     margin: auto;
     overflow: hidden;
@@ -47,68 +48,36 @@ nav ul li a.active {
     transition: transform 0.5s ease-in-out;
 }
 
-.slide {
-    min-width: 100%;
-    height: 400px;
-    background: lightgray;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .slide img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
+    width: 100%;
+    height: auto;
 }
-
-.prev, .next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    cursor: pointer;
-    padding: 10px;
-}
-
-.prev { left: 10px; }
-.next { right: 10px; }
 
 .dots {
-    display: flex;
-    justify-content: center;
+    text-align: center;
     margin-top: 10px;
 }
 
 .dot {
+    display: inline-block;
     width: 10px;
     height: 10px;
-    background: gray;
+    margin: 5px;
+    background-color: gray;
     border-radius: 50%;
-    margin: 0 5px;
     cursor: pointer;
 }
 
 .dot.active {
-    background: black;
+    background-color: black;
 }
 
-.content {
-    margin-top: 30px;
-    text-align: center;
-}
-
-.title-line {
-    border: none;
-    height: 2px;
-    background: lightgray;
+.divider {
     width: 80%;
-    margin: 10px auto;
+    margin: 20px auto;
+    border-top: 1px solid #ccc;
 }
 
-.description {
-    font-size: 18px;
-    color: black;
+.welcome-section {
+    margin-top: 20px;
 }

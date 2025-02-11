@@ -1,11 +1,9 @@
 let currentSlide = 0;
 const slides = document.querySelectorAll(".slide");
 const totalSlides = slides.length;
-const prevButton = document.querySelector(".prev");
-const nextButton = document.querySelector(".next");
 const dotsContainer = document.querySelector(".dots");
 
-// Create dots
+// Create dots dynamically
 for (let i = 0; i < totalSlides; i++) {
     const dot = document.createElement("span");
     dot.classList.add("dot");
@@ -22,19 +20,14 @@ function updateSlider() {
     dots[currentSlide].classList.add("active");
 }
 
-nextButton.addEventListener("click", () => {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    updateSlider();
-});
+// Highlight active menu item
+const navLinks = document.querySelectorAll(".nav-link");
+const currentPage = window.location.pathname.split("/").pop().split(".")[0];
 
-prevButton.addEventListener("click", () => {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    updateSlider();
-});
-
-dots.forEach(dot => {
-    dot.addEventListener("click", (e) => {
-        currentSlide = parseInt(e.target.getAttribute("data-index"));
-        updateSlider();
-    });
+navLinks.forEach(link => {
+    if (link.getAttribute("href").includes(currentPage)) {
+        link.classList.add("active");
+    } else {
+        link.classList.remove("active");
+    }
 });
