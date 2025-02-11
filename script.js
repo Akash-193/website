@@ -1,18 +1,34 @@
-let currentIndex = 0;
-const slides = document.querySelector(".carousel-slide");
-const totalSlides = slides.children.length;
+/* Updated script.js */
+let slideIndex = 0;
+const slides = document.querySelectorAll(".carousel-slide");
+const totalSlides = slides.length;
 
-function moveSlide(direction) {
-    currentIndex += direction;
-    
-    if (currentIndex >= totalSlides) {
-        currentIndex = 0;
-    } else if (currentIndex < 0) {
-        currentIndex = totalSlides - 1;
-    }
-
-    slides.style.transform = `translateX(${-currentIndex * 100}%)`;
+function showSlide(index) {
+    const carouselContainer = document.querySelector(".carousel-container");
+    const offset = -index * 100;
+    carouselContainer.style.transform = `translateX(${offset}%)`;
 }
 
-// Auto-slide every 3 seconds
-setInterval(() => moveSlide(1), 3000);
+function nextSlide() {
+    slideIndex = (slideIndex + 1) % totalSlides;
+    showSlide(slideIndex);
+}
+
+function prevSlide() {
+    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
+    showSlide(slideIndex);
+}
+
+setInterval(nextSlide, 5000);
+
+// Highlight Active Menu Item
+const links = document.querySelectorAll(".nav-link");
+const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
+
+links.forEach(link => {
+    if (link.dataset.page === currentPage) {
+        link.classList.add("active");
+    } else {
+        link.classList.remove("active");
+    }
+});

@@ -1,3 +1,4 @@
+<!-- Updated index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,41 +8,36 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <header>
+        <div class="logo">Akash Krishna</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link" data-page="home">Home</a></li>
+                <li><a href="about.html" class="nav-link" data-page="about">About</a></li>
+                <li><a href="thesis.html" class="nav-link" data-page="thesis">Thesis</a></li>
+                <li><a href="publications.html" class="nav-link" data-page="publications">Publications</a></li>
+                <li><a href="blog.html" class="nav-link" data-page="blog">Blog</a></li>
+                <li><a href="contact.html" class="nav-link" data-page="contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-<header>
-    <div class="logo">Akash Krishna</div> <!-- Not linked to home -->
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="about.html">About</a>
-        <a href="thesis.html">Thesis</a>
-        <a href="publications.html">Publications</a>
-        <a href="blog.html">Blog</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-</header>
+    <section class="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide">
+                <img src="image1.jpg" alt="Slide 1">
+            </div>
+            <div class="carousel-slide">
+                <img src="image2.jpg" alt="Slide 2">
+            </div>
+            <div class="carousel-slide">
+                <img src="image3.jpg" alt="Slide 3">
+            </div>
+        </div>
+        <button class="prev" onclick="prevSlide()">&#10094;</button>
+        <button class="next" onclick="nextSlide()">&#10095;</button>
+    </section>
 
-<!-- Carousel Section -->
-<section id="carousel">
-    <div class="carousel-slide">
-        <img src="image1.jpg" alt="Slide 1">
-        <img src="image2.jpg" alt="Slide 2">
-        <img src="image3.jpg" alt="Slide 3">
-    </div>
-    <button class="prev" onclick="moveSlide(-1)">❮</button>
-    <button class="next" onclick="moveSlide(1)">❯</button>
-</section>
-
-<!-- Welcome Section -->
-<section id="welcome">
-    <h1>Welcome to my Space</h1>
-    <p>[Your description here]</p>
-</section>
-
-<footer>
-    <p>© 2025 Akash Krishna. All rights reserved.</p>
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
