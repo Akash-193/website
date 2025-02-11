@@ -2,26 +2,26 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 30px;
+    padding: 10px 20px;
     background: white;
-    border-bottom: 2px solid lightgray; /* Ensuring consistent gray line */
 }
 
 .logo {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
+    color: black;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0;
     display: flex;
     justify-content: flex-end;
 }
@@ -39,6 +39,13 @@ nav ul li a {
 nav ul li a.active {
     color: black;
     font-weight: bold;
+}
+
+.nav-line {
+    border: none;
+    height: 2px;
+    background: lightgray;
+    margin-top: 5px;
 }
 
 .slider-container {
