@@ -3,57 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Krishna - Academic Website</title>
+    <title>Akash Krishna - Personal Website</title>
     <link rel="stylesheet" href="styles.css">
-    <script>
-        function toggleMenu() {
-            var menu = document.getElementById("nav-menu");
-            menu.classList.toggle("show");
-        }
-    </script>
+    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
-        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
-        <h1>Akash Krishna</h1>
-        <p>PhD Candidate | Researcher</p>
+        <div class="logo">Akash Krishna</div>
+        <nav>
+            <ul class="menu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#thesis">Thesis</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">&#9776;</div>
+        </nav>
     </header>
     
-    <nav>
-        <ul id="nav-menu" class="nav-hidden">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#thesis">Thesis</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#books">Book Recommendations</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
-    
-    <section id="home">
-        <img src="my-photo.jpg" alt="Akash Krishna" class="profile-pic">
+    <section class="carousel">
+        <div class="slides">
+            <div class="slide" style="background-image: url('image1.jpg');">
+                <h2>Welcome to My Research Space</h2>
+            </div>
+            <div class="slide" style="background-image: url('image2.jpg');">
+                <h2>Exploring Computational Chemistry</h2>
+            </div>
+            <div class="slide" style="background-image: url('image3.jpg');">
+                <h2>Machine Learning for Chemical Reactions</h2>
+            </div>
+        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
     </section>
     
     <section id="about">
         <h2>About Me</h2>
-        <p>Welcome! I am a PhD candidate @ Wageningen University and Research. I take interest in Computational Chemistry and Machine Learning.</p>
+        <p>I am a PhD candidate at Wageningen University and Research, working in Computational Chemistry and Machine Learning.</p>
     </section>
-    
+
     <section id="thesis">
-        <h2>Daily Learnings</h2>
-        <div id="posts"></div>
+        <h2>Thesis</h2>
+        <p>My thesis focuses on quantum chemical models to study molecular reactivity.</p>
     </section>
-    
+
     <section id="publications">
         <h2>Publications</h2>
-        <p>Coming soon...</p>
+        <p>List of my research papers and conference presentations.</p>
     </section>
-    
-    <section id="books">
-        <h2>Book Recommendations</h2>
-        <p>Coming soon...</p>
+
+    <section id="blog">
+        <h2>Blog</h2>
+        <p>Sharing my thoughts on computational chemistry and research.</p>
     </section>
-    
+
     <section id="contact">
         <h2>Contact</h2>
         <p>Email: akash.krishna193@gmail.com</p>
@@ -64,4 +69,3 @@
     </footer>
 </body>
 </html>
-
