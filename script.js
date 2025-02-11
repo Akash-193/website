@@ -38,3 +38,15 @@ dots.forEach(dot => {
         updateSlider();
     });
 });
+
+// Highlight active menu item
+const navLinks = document.querySelectorAll("nav ul li a");
+const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+
+navLinks.forEach(link => {
+    if (link.getAttribute("href").includes(currentPage)) {
+        link.classList.add("active");
+    } else {
+        link.classList.remove("active");
+    }
+});
