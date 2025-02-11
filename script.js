@@ -39,14 +39,19 @@ dots.forEach(dot => {
     });
 });
 
-// Highlight active menu item
-const navLinks = document.querySelectorAll("nav ul li a");
-const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+// Function to highlight the active navigation link
+function highlightActiveMenu() {
+    const navLinks = document.querySelectorAll("nav ul li a");
+    const currentPage = window.location.pathname.split("/").pop().split(".")[0] || "index";
 
-navLinks.forEach(link => {
-    if (link.getAttribute("href").includes(currentPage)) {
-        link.classList.add("active");
-    } else {
+    navLinks.forEach(link => {
         link.classList.remove("active");
-    }
-});
+        if (link.getAttribute("href").includes(currentPage)) {
+            link.classList.add("active");
+        }
+    });
+}
+
+// Call the function when the page loads
+document.addEventListener("DOMContentLoaded", highlightActiveMenu);
+

@@ -10,6 +10,7 @@ header {
     align-items: center;
     padding: 15px 30px;
     background: white;
+    border-bottom: 2px solid lightgray; /* Ensuring consistent gray line */
 }
 
 .logo {
@@ -38,13 +39,6 @@ nav ul li a {
 nav ul li a.active {
     color: black;
     font-weight: bold;
-}
-
-.nav-line {
-    border: none;
-    height: 2px;
-    background: lightgray;
-    margin-top: 5px;
 }
 
 .slider-container {
