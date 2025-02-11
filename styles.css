@@ -61,6 +61,20 @@ nav ul li a.active {
     font-size: 18px; /* Change font size */
     color: #333; /* Change font color */
     font-family: 'Nunito', sans-serif; /* Change font style */
+    text-align: justify; /* Justified text alignment */
+    max-width: 80%; /* Adjust width to match the slider */
+    margin: 0 auto; /* Center align the text */
+}
+
+/* General paragraph styling */
+p {
+    font-size: 18px; /* Adjust font size */
+    color: #333; /* Adjust font color */
+    font-family: 'Nunito', sans-serif; /* Set font style */
+    text-align: justify; /* Justify text alignment */
+    max-width: 80%; /* Match the slider width */
+    margin: 0 auto 20px auto; /* Center-align and add bottom spacing */
+    line-height: 1.6; /* Improve readability */
 }
 
 /* Horizontal Line Below Navigation */
