@@ -38,7 +38,7 @@ nav a {
 #carousel {
     position: relative;
     width: 100%;
-    max-width: 1000px;
+    max-width: 800px;
     margin: auto;
     overflow: hidden;
 }
@@ -46,6 +46,12 @@ nav a {
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
+    width: 300%; /* Each image takes up full width */
+}
+
+.carousel-slide {
+    flex: 0 0 100%; /* Each slide takes full space */
+    text-align: center;
 }
 
 .carousel-slide img {
