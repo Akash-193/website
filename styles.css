@@ -1,81 +1,102 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: white;
+    text-align: center;
 }
 
+/* Header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 50px;
+    padding: 10px 20px;
     background: white;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid #ddd;
 }
 
+/* Ensure "Akash Krishna" remains black */
 .logo {
     font-size: 24px;
     font-weight: bold;
+    color: black !important; /* Ensures no color change */
+    text-decoration: none;
 }
 
-nav {
-    display: flex;
-    gap: 20px;
+/* Prevent hover effects from changing the color */
+.logo:hover {
+    color: black !important;
+    cursor: default;
 }
 
+/* Navigation */
 nav a {
     text-decoration: none;
-    color: black;
+    color: black !important; /* Ensures all links are black */
     font-size: 18px;
+    margin: 0 15px;
 }
 
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Carousel */
 #carousel {
     position: relative;
-    width: 100%;
+    width: 80%;
     max-width: 800px;
-    margin: auto;
+    height: 400px;
+    margin: 20px auto;
     overflow: hidden;
-}
-
-.carousel-container {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 300%;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .carousel-slide {
-    flex: 0 0 100%;
-    text-align: center;
+    display: flex;
+    width: 300%;
+    transition: transform 0.5s ease-in-out;
 }
 
 .carousel-slide img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover; /* Ensures image fits properly */
 }
 
+/* Carousel Buttons */
 .prev, .next {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    cursor: pointer;
     padding: 10px;
+    cursor: pointer;
 }
 
 .prev { left: 10px; }
 .next { right: 10px; }
 
-.content {
-    text-align: center;
-    padding: 40px 20px;
+/* Welcome Section */
+#welcome {
+    margin-top: 30px;
 }
 
+#welcome h1 {
+    font-size: 28px;
+}
+
+#welcome p {
+    font-size: 18px;
+}
+
+/* Footer */
 footer {
-    text-align: center;
-    padding: 20px;
-    background: white;
-    border-top: 1px solid #ddd;
+    margin-top: 20px;
+    padding: 10px;
+    background: #f0f0f0;
 }
