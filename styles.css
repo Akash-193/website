@@ -5,6 +5,7 @@ body {
     text-align: center;
 }
 
+/* Header Section */
 header {
     display: flex;
     justify-content: space-between;
@@ -13,12 +14,15 @@ header {
     background: white;
 }
 
+/* "Akash Krishna" Styling */
 .logo {
-    font-size: 22px;
+    font-size: 24px; /* Change font size */
     font-weight: bold;
-    color: black;
+    color: black; /* Change font color */
+    font-family: 'Georgia', serif; /* Change font style */
 }
 
+/* Navigation Menu Styling */
 nav ul {
     list-style: none;
     padding: 0;
@@ -33,8 +37,9 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: gray;
-    font-size: 18px;
+    color: gray; /* Change font color */
+    font-size: 18px; /* Change font size */
+    font-family: 'Arial', sans-serif; /* Change font style */
 }
 
 nav ul li a.active {
@@ -42,6 +47,21 @@ nav ul li a.active {
     font-weight: bold;
 }
 
+/* "Welcome to my Space" Styling */
+.content h1 {
+    font-size: 32px; /* Change font size */
+    color: black; /* Change font color */
+    font-family: 'Verdana', sans-serif; /* Change font style */
+}
+
+/* "Your description goes here." Styling */
+.description {
+    font-size: 18px; /* Change font size */
+    color: #333; /* Change font color */
+    font-family: 'Times New Roman', serif; /* Change font style */
+}
+
+/* Horizontal Line Below Navigation */
 .nav-line {
     border: none;
     height: 2px;
@@ -49,6 +69,7 @@ nav ul li a.active {
     margin-top: 5px;
 }
 
+/* Slider */
 .slider-container {
     position: relative;
     width: 80%;
@@ -76,6 +97,7 @@ nav ul li a.active {
     object-fit: contain;
 }
 
+/* Navigation Buttons */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -109,20 +131,10 @@ nav ul li a.active {
     background: black;
 }
 
-.content {
-    margin-top: 30px;
-    text-align: center;
-}
-
 .title-line {
     border: none;
     height: 2px;
     background: lightgray;
     width: 80%;
     margin: 10px auto;
-}
-
-.description {
-    font-size: 18px;
-    color: black;
 }
