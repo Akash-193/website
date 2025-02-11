@@ -1,34 +1,52 @@
-/* Updated script.js */
-let slideIndex = 0;
-const slides = document.querySelectorAll(".carousel-slide");
-const totalSlides = slides.length;
+document.addEventListener("DOMContentLoaded", () => {
+    let currentSlide = 0;
+    const slides = document.querySelectorAll(".slide");
+    const totalSlides = slides.length;
+    const prevButton = document.querySelector(".prev");
+    const nextButton = document.querySelector(".next");
+    const dotsContainer = document.querySelector(".dots");
 
-function showSlide(index) {
-    const carouselContainer = document.querySelector(".carousel-container");
-    const offset = -index * 100;
-    carouselContainer.style.transform = `translateX(${offset}%)`;
-}
+    // Create dots dynamically
+    slides.forEach((_, index) => {
+        const dot = document.createElement("span");
+        dot.classList.add("dot");
+        dot.setAttribute("data-index", index);
+        dotsContainer.appendChild(dot);
+    });
 
-function nextSlide() {
-    slideIndex = (slideIndex + 1) % totalSlides;
-    showSlide(slideIndex);
-}
+    const dots = document.querySelectorAll(".dot");
+    dots[currentSlide].classList.add("active");
 
-function prevSlide() {
-    slideIndex = (slideIndex - 1 + totalSlides) % totalSlides;
-    showSlide(slideIndex);
-}
-
-setInterval(nextSlide, 5000);
-
-// Highlight Active Menu Item
-const links = document.querySelectorAll(".nav-link");
-const currentPage = window.location.pathname.split("/").pop().replace(".html", "");
-
-links.forEach(link => {
-    if (link.dataset.page === currentPage) {
-        link.classList.add("active");
-    } else {
-        link.classList.remove("active");
+    function updateSlider() {
+        document.querySelector(".slider").style.transform = `translateX(-${currentSlide * 100}%)`;
+        dots.forEach(dot => dot.classList.remove("active"));
+        dots[currentSlide].classList.add("active");
     }
+
+    nextButton.addEventListener("click", () => {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        updateSlider();
+    });
+
+    prevButton.addEventListener("click", () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+        updateSlider();
+    });
+
+    dots.forEach(dot => {
+        dot.addEventListener("click", (e) => {
+            currentSlide = parseInt(e.target.getAttribute("data-index"));
+            updateSlider();
+        });
+    });
+
+    // Active menu highlighting based on the current page
+    const navLinks = document.querySelectorAll("nav ul li a");
+    const currentPage = window.location.pathname.split("/").pop();
+
+    navLinks.forEach(link => {
+        if (link.getAttribute("href") === currentPage) {
+            link.classList.add("active");
+        }
+    });
 });
