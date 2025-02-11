@@ -1,61 +1,58 @@
 body {
     font-family: Arial, sans-serif;
-    background-image: url('background.jpg');
-    background-size: cover;
-    background-position: center;
-    color: #fff;
-    text-align: center;
     margin: 0;
     padding: 0;
+    background-color: white;
 }
-
 header {
-    background: rgba(0, 0, 0, 0.7);
-    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 50px;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
-
-h1 {
-    font-size: 2.5em;
-    margin: 0;
+.logo {
+    font-size: 24px;
+    font-weight: bold;
 }
-
-p {
-    font-size: 1.2em;
-}
-
 nav ul {
-    list-style: none;
-    padding: 0;
-    display: none;
+    list-style-type: none;
+    display: flex;
+    gap: 20px;
 }
-
-nav ul.show {
-    display: block;
-}
-
 nav ul li {
-    padding: 10px;
+    display: inline;
 }
-
 nav ul li a {
     text-decoration: none;
-    color: white;
-    font-size: 1.2em;
+    color: black;
+    font-size: 18px;
 }
-
-.menu-icon {
-    font-size: 2em;
-    cursor: pointer;
+#carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+}
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+}
+.prev, .next {
     position: absolute;
-    top: 10px;
-    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
 }
-
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin: 20px auto;
-    display: block;
-    border: 3px solid white;
-}
+.prev { left: 10px; }
+.next { right: 10px; }

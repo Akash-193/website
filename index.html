@@ -5,13 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akash Krishna - Personal Website</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
 </head>
 <body>
     <header>
         <div class="logo">Akash Krishna</div>
         <nav>
-            <ul class="menu">
+            <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
                 <li><a href="#thesis">Thesis</a></li>
@@ -19,46 +18,39 @@
                 <li><a href="#blog">Blog</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <div class="hamburger">&#9776;</div>
         </nav>
     </header>
     
-    <section class="carousel">
-        <div class="slides">
-            <div class="slide" style="background-image: url('image1.jpg');">
-                <h2>Welcome to My Research Space</h2>
-            </div>
-            <div class="slide" style="background-image: url('image2.jpg');">
-                <h2>Exploring Computational Chemistry</h2>
-            </div>
-            <div class="slide" style="background-image: url('image3.jpg');">
-                <h2>Machine Learning for Chemical Reactions</h2>
-            </div>
+    <section id="carousel">
+        <div class="carousel-container">
+            <div class="carousel-slide"><img src="image1.jpg" alt="Slide 1"></div>
+            <div class="carousel-slide"><img src="image2.jpg" alt="Slide 2"></div>
+            <div class="carousel-slide"><img src="image3.jpg" alt="Slide 3"></div>
         </div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </section>
     
     <section id="about">
         <h2>About Me</h2>
-        <p>I am a PhD candidate at Wageningen University and Research, working in Computational Chemistry and Machine Learning.</p>
+        <p>Welcome! I am a PhD candidate @ Wageningen University and Research. I take interest in Computational Chemistry and Machine Learning.</p>
     </section>
-
+    
     <section id="thesis">
         <h2>Thesis</h2>
-        <p>My thesis focuses on quantum chemical models to study molecular reactivity.</p>
+        <div id="posts"></div>
     </section>
-
+    
     <section id="publications">
         <h2>Publications</h2>
-        <p>List of my research papers and conference presentations.</p>
+        <p>List of academic publications...</p>
     </section>
-
+    
     <section id="blog">
         <h2>Blog</h2>
-        <p>Sharing my thoughts on computational chemistry and research.</p>
+        <p>My latest thoughts and updates...</p>
     </section>
-
+    
     <section id="contact">
         <h2>Contact</h2>
         <p>Email: akash.krishna193@gmail.com</p>
@@ -67,5 +59,19 @@
     <footer>
         <p>&copy; 2025 Akash Krishna. All rights reserved.</p>
     </footer>
+    
+    <script>
+        let slideIndex = 0;
+        function moveSlide(n) {
+            let slides = document.querySelectorAll(".carousel-slide");
+            slideIndex += n;
+            if (slideIndex >= slides.length) slideIndex = 0;
+            if (slideIndex < 0) slideIndex = slides.length - 1;
+            document.querySelector(".carousel-container").style.transform = `translateX(${-slideIndex * 100}%)`;
+        }
+        document.addEventListener("DOMContentLoaded", () => {
+            setInterval(() => moveSlide(1), 3000);
+        });
+    </script>
 </body>
 </html>
