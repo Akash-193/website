@@ -1,104 +1,75 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Krishna</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: white;
-        }
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 50px;
-            background: #f8f8f8;
-            border-bottom: 1px solid #ddd;
-        }
-        .nav-links {
-            display: flex;
-            gap: 15px;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: black;
-            font-size: 18px;
-        }
-        .content {
-            padding: 20px;
-            text-align: center;
-        }
-        #carousel {
-            position: relative;
-            width: 100%;
-            max-width: 1000px;
-            margin: auto;
-            overflow: hidden;
-        }
-        .carousel-container {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .carousel-slide img {
-            width: 100%;
-            height: auto;
-        }
-        .prev, .next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            cursor: pointer;
-            padding: 10px;
-        }
-        .prev { left: 10px; }
-        .next { right: 10px; }
-    </style>
-</head>
-<body>
-    <header>
-        <h1>Akash Krishna</h1>
-        <nav class="nav-links">
-            <a href="about.html">About</a>
-            <a href="thesis.html">Thesis</a>
-            <a href="publications.html">Publications</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
-        </nav>
-    </header>
-    
-    <div class="content">
-        <h2>Welcome to my Space</h2>
-        <p>[Your description here]</p>
-    </div>
-    
-    <div id="carousel">
-        <div class="carousel-container">
-            <div class="carousel-slide"><img src="slide1.jpg" alt="Slide 1"></div>
-            <div class="carousel-slide"><img src="slide2.jpg" alt="Slide 2"></div>
-            <div class="carousel-slide"><img src="slide3.jpg" alt="Slide 3"></div>
-        </div>
-        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
-        <button class="next" onclick="moveSlide(1)">&#10095;</button>
-    </div>
-    
-    <footer>
-        <p>&copy; 2025 Akash Krishna. All rights reserved.</p>
-    </footer>
-    
-    <script>
-        let index = 0;
-        function moveSlide(step) {
-            const slides = document.querySelectorAll('.carousel-slide');
-            index = (index + step + slides.length) % slides.length;
-            document.querySelector('.carousel-container').style.transform = `translateX(${-index * 100}%)`;
-        }
-    </script>
-</body>
-</html>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: black;
+    font-size: 18px;
+}
+
+.content {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+#carousel {
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+}
+
+.carousel-container {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: auto;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.prev { left: 10px; }
+.next { right: 10px; }
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background: white;
+    border-top: 1px solid #ddd;
+}
