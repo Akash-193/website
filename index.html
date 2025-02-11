@@ -3,40 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name - Academic Website</title>
+    <title>Akash Krishna - Academic Website</title>
     <link rel="stylesheet" href="styles.css">
+    <script>
+        function toggleMenu() {
+            var menu = document.getElementById("nav-menu");
+            menu.classList.toggle("show");
+        }
+    </script>
 </head>
 <body>
     <header>
-        <h1>Your Name</h1>
-        <p>PhD Student | Researcher | Daily Learnings</p>
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <h1>Akash Krishna</h1>
+        <p>PhD Candidate | Researcher</p>
     </header>
     
     <nav>
-        <ul>
+        <ul id="nav-menu" class="nav-hidden">
+            <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#blog">Blog</a></li>
+            <li><a href="#thesis">Thesis</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#books">Book Recommendations</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
     
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome! I am a PhD student documenting my daily learnings in research and beyond.</p>
+    <section id="home">
+        <img src="your-photo.jpg" alt="Akash Krishna" class="profile-pic">
     </section>
     
-    <section id="blog">
+    <section id="about">
+        <h2>About Me</h2>
+        <p>Welcome! I am a PhD candidate @ Wageningen University and Research. I take interest in Computational Chemistry and Machine Learning.</p>
+    </section>
+    
+    <section id="thesis">
         <h2>Daily Learnings</h2>
         <div id="posts"></div>
     </section>
     
+    <section id="publications">
+        <h2>Publications</h2>
+        <p>Coming soon...</p>
+    </section>
+    
+    <section id="books">
+        <h2>Book Recommendations</h2>
+        <p>Coming soon...</p>
+    </section>
+    
     <section id="contact">
         <h2>Contact</h2>
-        <p>Email: your.email@example.com</p>
+        <p>Email: akash.krishna193@gmail.com</p>
     </section>
     
     <footer>
-        <p>&copy; 2025 Your Name. All rights reserved.</p>
+        <p>&copy; 2025 Akash Krishna. All rights reserved.</p>
     </footer>
 </body>
 </html>
+
