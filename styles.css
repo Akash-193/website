@@ -30,11 +30,6 @@ nav a {
     font-size: 18px;
 }
 
-.content {
-    text-align: center;
-    padding: 40px 20px;
-}
-
 #carousel {
     position: relative;
     width: 100%;
@@ -46,11 +41,11 @@ nav a {
 .carousel-container {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: 300%; /* Each image takes up full width */
+    width: 300%;
 }
 
 .carousel-slide {
-    flex: 0 0 100%; /* Each slide takes full space */
+    flex: 0 0 100%;
     text-align: center;
 }
 
@@ -72,6 +67,11 @@ nav a {
 
 .prev { left: 10px; }
 .next { right: 10px; }
+
+.content {
+    text-align: center;
+    padding: 40px 20px;
+}
 
 footer {
     text-align: center;
