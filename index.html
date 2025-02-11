@@ -23,38 +23,30 @@
     
     <section id="carousel">
         <div class="carousel-container">
-            <div class="carousel-slide"><img src="image1.jpg" alt="Slide 1"></div>
-            <div class="carousel-slide"><img src="image2.jpg" alt="Slide 2"></div>
-            <div class="carousel-slide"><img src="image3.jpg" alt="Slide 3"></div>
+            <div class="carousel-slide" style="background-image: url('image1.jpg');">
+                <div class="carousel-text">Your Description for Slide 1</div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('image2.jpg');">
+                <div class="carousel-text">Your Description for Slide 2</div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('image3.jpg');">
+                <div class="carousel-text">Your Description for Slide 3</div>
+            </div>
         </div>
         <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
         <button class="next" onclick="moveSlide(1)">&#10095;</button>
     </section>
     
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Welcome! I am a PhD candidate @ Wageningen University and Research. I take interest in Computational Chemistry and Machine Learning.</p>
+    <section id="home">
+        <h1>Welcome to my Space</h1>
+        <p>[Your description here]</p>
     </section>
     
-    <section id="thesis">
-        <h2>Thesis</h2>
-        <div id="posts"></div>
-    </section>
-    
-    <section id="publications">
-        <h2>Publications</h2>
-        <p>List of academic publications...</p>
-    </section>
-    
-    <section id="blog">
-        <h2>Blog</h2>
-        <p>My latest thoughts and updates...</p>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: akash.krishna193@gmail.com</p>
-    </section>
+    <section id="about"><h2>About</h2><p>Coming soon...</p></section>
+    <section id="thesis"><h2>Thesis</h2><p>Coming soon...</p></section>
+    <section id="publications"><h2>Publications</h2><p>Coming soon...</p></section>
+    <section id="blog"><h2>Blog</h2><p>Coming soon...</p></section>
+    <section id="contact"><h2>Contact</h2><p>Coming soon...</p></section>
     
     <footer>
         <p>&copy; 2025 Akash Krishna. All rights reserved.</p>
@@ -67,11 +59,14 @@
             slideIndex += n;
             if (slideIndex >= slides.length) slideIndex = 0;
             if (slideIndex < 0) slideIndex = slides.length - 1;
-            document.querySelector(".carousel-container").style.transform = `translateX(${-slideIndex * 100}%)`;
+            slides.forEach(slide => slide.style.display = "none");
+            slides[slideIndex].style.display = "block";
         }
         document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".carousel-slide")[0].style.display = "block";
             setInterval(() => moveSlide(1), 3000);
         });
     </script>
 </body>
 </html>
+
