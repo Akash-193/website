@@ -9,27 +9,21 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #fff;
+    padding: 15px;
+    background-color: white;
 }
 
-nav ul {
-    list-style: none;
-    padding: 0;
+nav {
     display: flex;
+    gap: 20px;
 }
 
-nav ul li {
-    margin: 0 15px;
-}
-
-nav ul li a {
+nav a {
     text-decoration: none;
     color: gray;
-    font-size: 18px;
 }
 
-nav ul li a.active {
+nav a.active {
     color: black;
     font-weight: bold;
 }
@@ -37,8 +31,9 @@ nav ul li a.active {
 .slider-container {
     position: relative;
     width: 80%;
-    margin: 20px auto;
+    margin: auto;
     overflow: hidden;
+    margin-top: 20px;
 }
 
 .slider {
@@ -49,6 +44,7 @@ nav ul li a.active {
 .slide {
     min-width: 100%;
     height: 400px;
+    background-color: lightgray;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,11 +52,7 @@ nav ul li a.active {
 
 .slide img {
     max-width: 100%;
-    max-height: 100%;
-}
-
-.empty {
-    background-color: lightgray;
+    height: auto;
 }
 
 .prev, .next {
@@ -74,15 +66,20 @@ nav ul li a.active {
     cursor: pointer;
 }
 
-.prev {
-    left: 10px;
-}
-
-.next {
-    right: 10px;
-}
+.prev { left: 10px; }
+.next { right: 10px; }
 
 .welcome-section {
     margin-top: 40px;
-    padding: 20px;
+}
+
+.text-box {
+    font-size: 16px;
+    color: black;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: inline-block;
+    width: 60%;
+    text-align: left;
 }
