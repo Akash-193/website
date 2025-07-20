@@ -1,53 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Akash Krishna</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Akash Krishna</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header>
+    <div class="logo">Akash Krishna</div>
+    <nav>
+      <ul>
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="thesis.html">Thesis</a></li>
+        <li><a href="publications.html">Publications</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <header>
-        <div class="logo">Akash Krishna</div>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="thesis.html">Thesis</a></li>
-                <li><a href="publications.html">Publications</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+  <hr class="nav-line" />
 
-    <hr class="nav-line">
-
-    <div class="slider-container">
-        <div class="slider">
-            <div class="slide">
-                <img src="image1.jpg" alt="Slide Image">
-            </div>
-            <div class="slide"></div>
-            <div class="slide"></div>
-        </div>
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-        <div class="dots"></div>
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slide"><img src="image1.jpg" alt="Slide Image" /></div>
+      <div class="slide"></div>
+      <div class="slide"></div>
     </div>
+    <button class="prev">&#10094;</button>
+    <button class="next">&#10095;</button>
+    <div class="dots"></div>
+  </div>
 
-    <div class="content">
-        <h1>Welcome to my Space</h1>
-        <hr class="title-line">
-        <p class="description">
-            <!-- Add your description here in the code -->
-            <p>Based in WUR’s Laboratory of Organic Chemistry and Biobased Chemistry & Technology, I integrate expertise in organic chemistry, quantum chemistry, and computer science to optimize chemical reactions—particularly focusing on Click Reactions. My work is primarily computational, leveraging traditional electronic structure calculations and ab initio dynamics while incorporating machine learning to accelerate molecular dynamics simulations.</p> 
-            <p>One of the coolest parts of what I do is figuring out how to make chemistry problems more approachable for computers without oversimplifying them. The goal of this website is to convery my research to the public in a very simple way. For example, Imagine you’re watching a really intense game of pool, but instead of just seeing the balls roll and collide on the table, you want to understand exactly how each ball moves, spins, and transfers energy when it hits another. Now, imagine if the balls were so tiny you couldn’t see them with your eyes—that’s what happens in chemistry at the molecular level.</p>
-            <p>My job is like being a high-tech pool analyst. I use powerful computer simulations to predict how these invisible “pool balls” (molecules) interact, helping scientists design better reactions—kind of like figuring out the best trick shot before even taking it. And to make things even cooler, I train an AI assistant to learn from these simulations so it can predict future shots even faster!</p>       
+  <div class="content">
+    <h1 id="index-title">Welcome to my Space</h1>
+    <hr class="title-line" />
+    <div id="index-description">
+      <p>Default description in case Sanity fails to load.</p>
     </div>
+  </div>
 
-    <script src="script.js"></script>
-
+  <script type="module" src="script.js"></script>
 </body>
 </html>
