@@ -154,3 +154,123 @@ p {
     width: 80%;
     margin: 10px auto;
 }
+
+/* === NEW STYLES ADDED BELOW === */
+
+/* Style for the logo image */
+.logo img {
+    height: 50px; /* Adjust the height of your logo */
+    width: auto;
+    display: block;
+}
+
+/* === Publications Page Styling === */
+
+.filters {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 20px auto;
+    max-width: 80%;
+}
+
+.filters span {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filter-btn {
+    padding: 8px 15px;
+    border: 1px solid lightgray;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    cursor: pointer;
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease-in-out;
+}
+
+.filter-btn:hover {
+    background-color: #dcdcdc;
+}
+
+.filter-btn.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: bold;
+}
+
+#publication-list {
+    text-align: left;
+    max-width: 80%;
+    margin: 20px auto;
+}
+
+.publication-item {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.publication-item p {
+    margin: 5px 0;
+    max-width: 100%; /* Override general paragraph styling */
+    text-align: left; /* Override general paragraph styling */
+}
+
+.pub-authors {
+    font-size: 16px;
+    color: #555;
+}
+
+.pub-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.pub-title a {
+    text-decoration: none;
+    color: #0056b3;
+}
+
+.pub-title a:hover {
+    text-decoration: underline;
+}
+
+.pub-journal {
+    font-size: 16px;
+    font-style: italic;
+    color: #333;
+}
+
+.pub-tags {
+    margin-top: 10px;
+}
+
+.pub-tag {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.status-tag {
+    background-color: #007bff;
+    color: white;
+}
+
+.theme-tag {
+    background-color: #ffc107;
+    color: #333;
+}
