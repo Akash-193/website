@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDocumentOperation } from 'sanity';
 import { Spinner } from '@sanity/ui';
 
-// Helper function to find a DOI in a string
 function extractDoi(str) {
   if (!str) return null;
   const doiRegex = /(10.\d{4,9}\/[-._;()/:A-Z0-9]+)/i;
@@ -11,7 +10,7 @@ function extractDoi(str) {
 }
 
 export function FetchDoiAction(props) {
-  const { patch, publish } = useDocumentOperation(props.id, props.type);
+  const { patch } = useDocumentOperation(props.id, props.type);
   const [isFetching, setIsFetching] = useState(false);
 
   return {
@@ -35,7 +34,6 @@ export function FetchDoiAction(props) {
 
         const data = await response.json();
         const pub = data.message;
-
         const authors = pub.author.map(a => `${a.family}, ${a.given[0]}.`).join(', ');
 
         patch.execute([
@@ -46,7 +44,7 @@ export function FetchDoiAction(props) {
           { set: { link: pub.URL } },
           { set: { doi: extractedDoi } },
         ]);
-
+        
       } catch (error) {
         alert(error.message);
       } finally {

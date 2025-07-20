@@ -6,7 +6,7 @@ export default {
       {
         name: 'doi',
         title: 'DOI',
-        description: 'Paste a URL or DOI here, then use the "Fetch from DOI" action.',
+        description: 'Paste a URL or DOI here, then use the "Fetch from DOI" action below.',
         type: 'string',
       },
       {
@@ -15,7 +15,6 @@ export default {
         type: 'string',
         readOnly: true,
       },
-      // ... all your other fields (authors, year, etc.) remain the same ...
       {
         name: 'authors',
         title: 'Authors',
@@ -54,13 +53,4 @@ export default {
         options: { layout: 'tags' }
       },
     ],
-    orderings: [
-      {
-        title: 'Year, Newest First',
-        name: 'yearDesc',
-        by: [
-          {field: 'year', direction: 'desc'}
-        ]
-      }
-    ]
   };
