@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useDocumentOperation } from 'sanity';
 import { Spinner } from '@sanity/ui';
 
-// Helper function to find a DOI in a string
 function extractDoi(str) {
   if (!str) return null;
   const doiRegex = /(10.\d{4,9}\/[-._;()/:A-Z0-9]+)/i;
