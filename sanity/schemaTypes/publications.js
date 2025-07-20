@@ -1,4 +1,4 @@
-import DoiInput from '../components/DoiInput'; // We will create this component
+import DoiInput from '../components/DoiInput';
 
 export default {
   name: 'publication',
@@ -10,46 +10,43 @@ export default {
       title: 'DOI',
       description: 'Paste the DOI here and click "Fetch" to populate fields automatically.',
       type: 'string',
-      components: {
-        input: DoiInput // Assigning our custom component
-      }
+      component: DoiInput // <-- This line has been corrected
     },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      readOnly: true, // Will be filled automatically
+      readOnly: true,
     },
     {
       name: 'authors',
       title: 'Authors',
       type: 'string',
-      readOnly: true, // Will be filled automatically
+      readOnly: true,
     },
     {
-        name: 'year',
-        title: 'Year',
-        type: 'number',
-        readOnly: true, // Will be filled automatically
+      name: 'year',
+      title: 'Year',
+      type: 'number',
+      readOnly: true,
     },
     {
       name: 'journal',
       title: 'Journal or Preprint Info',
       type: 'string',
-      readOnly: true, // Will be filled automatically
+      readOnly: true,
     },
     {
       name: 'link',
       title: 'Link (DOI URL)',
       type: 'url',
-      readOnly: true, // Will be filled automatically
+      readOnly: true,
     },
-    // ... Keep your status and tags fields as they are ...
     {
-        name: 'status',
-        title: 'Status',
-        type: 'string',
-        options: { list: ['Preprint', 'Published'], layout: 'radio' }
+      name: 'status',
+      title: 'Status',
+      type: 'string',
+      options: { list: ['Preprint', 'Published'], layout: 'radio' }
     },
     {
       name: 'tags',
@@ -59,5 +56,13 @@ export default {
       options: { layout: 'tags' }
     },
   ],
-  // ... keep your orderings array ...
+  orderings: [
+    {
+      title: 'Year, Newest First',
+      name: 'yearDesc',
+      by: [
+        {field: 'year', direction: 'desc'}
+      ]
+    }
+  ]
 };
