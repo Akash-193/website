@@ -1,4 +1,4 @@
-@import url('https'//fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
 
 body {
     font-family: Nunito, sans-serif;
@@ -25,20 +25,26 @@ header {
 }
 
 .logo img {
-    height: 50px; /* Adjust as needed */
+    height: 40px; /* You can change this value to make the logo smaller or larger */
     margin-right: 15px; /* Adds space between the logo and your name */
 }
 
 .logo span {
-    font-size: 32px;
+    font-size: 28px; /* Reduced font size slightly to match logo */
     font-weight: bold;
     font-family: 'Nunito', sans-serif;
 }
 
 /* Navigation Menu Styling */
+nav {
+    display: flex; /* Added to help with alignment */
+    align-items: center; /* Added to vertically center the nav menu */
+}
+
 nav ul {
     list-style: none;
     padding: 0;
+    margin: 0; /* Removed default margin */
     display: flex;
     justify-content: flex-end;
     width: 100%;
