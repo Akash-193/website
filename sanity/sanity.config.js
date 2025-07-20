@@ -2,7 +2,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
-import {FetchDoiAction} from './actions/fetchDoiAction' // <-- 1. IMPORT the new action
+import {FetchDoiAction} from './actions/fetchDoiAction' // <-- This is correct
 
 export default defineConfig({
   name: 'default',
@@ -16,8 +16,8 @@ export default defineConfig({
   schema: {
     types: schemaTypes,
 
-    // vvv 2. ADD THIS ENTIRE 'templates' AND 'document' SECTION vvv
-    templates: (prev) => prev.filter((template) => template.id !== 'publication'),
+    // The 'templates' line has been removed.
+    // The 'document' section is correct and remains.
     document: {
       actions: (prev, context) => {
         // Add our custom action to the 'publication' document type
@@ -26,6 +26,5 @@ export default defineConfig({
           : prev;
       },
     },
-    // ^^^ 2. ADD THIS ENTIRE 'templates' AND 'document' SECTION ^^^
   },
 })
