@@ -1,4 +1,1 @@
-import content from './content'
-import publication from './publications' // <-- Import the new schema
-
-export const schemaTypes = [content, publication] // <-- Add it to the array
+export const schemaTypes = []

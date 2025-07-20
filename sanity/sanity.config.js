@@ -1,14 +1,16 @@
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
-import {schemaTypes} from './schemaTypes'
+import {schemaTypes} from './schemas'
 import {FetchDoiAction} from './actions/fetchDoiAction'
 
 export default defineConfig({
   name: 'default',
   title: 'Research Website',
-  projectId: '3w49e1s5',
-  dataset: 'production',
+
+  projectId: '3w49e1s5', // Your existing Project ID
+  dataset: 'production',    // Your existing Dataset
+
   plugins: [
     structureTool({
       document: {
@@ -21,6 +23,7 @@ export default defineConfig({
     }),
     visionTool(),
   ],
+
   schema: {
     types: schemaTypes,
   },
