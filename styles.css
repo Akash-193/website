@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
+@import url('https'//fonts.googleapis.com/css2?family=Nunito:wght@300;400;700&display=swap');
 
 body {
     font-family: Nunito, sans-serif;
@@ -16,12 +16,23 @@ header {
     background: white;
 }
 
-/* "Akash Krishna" Styling */
-.logo {
-    font-size: 32px; /* Change font size */
+/* Updated Logo Styling */
+.logo a {
+    display: flex;
+    align-items: center; /* This vertically aligns the logo and text */
+    text-decoration: none;
+    color: black;
+}
+
+.logo img {
+    height: 50px; /* Adjust as needed */
+    margin-right: 15px; /* Adds space between the logo and your name */
+}
+
+.logo span {
+    font-size: 32px;
     font-weight: bold;
-    color: black; /* Change font color */
-    font-family: 'Nunito', sans-serif; /* Change font style */
+    font-family: 'Nunito', sans-serif;
 }
 
 /* Navigation Menu Styling */
@@ -153,15 +164,6 @@ p {
     background: lightgray;
     width: 80%;
     margin: 10px auto;
-}
-
-/* === NEW STYLES ADDED BELOW === */
-
-/* Style for the logo image */
-.logo img {
-    height: 50px; /* Adjust the height of your logo */
-    width: auto;
-    display: block;
 }
 
 /* === Publications Page Styling === */
