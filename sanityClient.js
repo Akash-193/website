@@ -1,4 +1,4 @@
-import { createClient } from '@sanity/client';
+import { createClient } from 'https://cdn.skypack.dev/@sanity/client';
 
 const client = createClient({
   projectId: '3w49e1s5',     // ✅ Your actual Sanity project ID
