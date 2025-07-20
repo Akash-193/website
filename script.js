@@ -71,13 +71,17 @@ const titleId = `${page}-title`;
 const descId = `${page}-description`;
 
 if (document.getElementById(descId)) {
+    // Change #1: Added "displayTitle" to the query below
     sanityClient.fetch(`*[_type == "content" && title == "${pageTitleMap[page]}"][0]{
         title,
+        displayTitle,
         body
     }`).then(data => {
         if (data) {
+            // Change #2: Updated this logic to use "displayTitle" if it exists
             if (document.getElementById(titleId) && data.title) {
-                document.getElementById(titleId).innerText = data.title;
+                // Use the displayTitle if it exists, otherwise fall back to the main title
+                document.getElementById(titleId).innerText = data.displayTitle || data.title;
             }
             if (document.getElementById(descId) && data.body) {
                 document.getElementById(descId).innerHTML = blockContentToHtml({ blocks: data.body });
