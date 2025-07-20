@@ -4,53 +4,59 @@ export default {
   type: 'document',
   fields: [
     {
-      name: 'doi',
-      title: 'DOI',
-      description: 'Paste a URL or DOI here, then use the "Fetch from DOI" action below.',
-      type: 'string',
-    },
-    {
       name: 'title',
       title: 'Title',
       type: 'string',
-      readOnly: true,
+      validation: Rule => Rule.required(),
     },
     {
       name: 'authors',
       title: 'Authors',
       type: 'string',
-      readOnly: true,
-    },
-    {
-      name: 'year',
-      title: 'Year',
-      type: 'number',
-      readOnly: true,
+      description: 'Enter author names, separated by commas.',
     },
     {
       name: 'journal',
       title: 'Journal or Preprint Info',
       type: 'string',
-      readOnly: true,
+      description: 'e.g., J. Chem. Inf. Model. or ChemRxiv (2025) preprint',
+    },
+    {
+        name: 'year',
+        title: 'Year',
+        type: 'number',
     },
     {
       name: 'link',
-      title: 'Link (DOI URL)',
+      title: 'Link (DOI or Preprint URL)',
       type: 'url',
-      readOnly: true,
     },
     {
-      name: 'status',
-      title: 'Status',
-      type: 'string',
-      options: { list: ['Preprint', 'Published'], layout: 'radio' }
+        name: 'status',
+        title: 'Status',
+        type: 'string',
+        options: {
+            list: ['Preprint', 'Published'],
+            layout: 'radio'
+        }
     },
     {
       name: 'tags',
       title: 'Tags / Research Themes',
       type: 'array',
       of: [{type: 'string'}],
-      options: { layout: 'tags' }
+      options: {
+        layout: 'tags'
+      }
     },
   ],
+  orderings: [
+    {
+      title: 'Year, Newest First',
+      name: 'yearDesc',
+      by: [
+        {field: 'year', direction: 'desc'}
+      ]
+    }
+  ]
 };
