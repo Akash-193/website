@@ -55,7 +55,7 @@ navLinks.forEach(link => {
 
 // === SANITY CONTENT FETCH ===
 import sanityClient from './sanityClient.js';
-import blockContentToHtml from '@sanity/block-content-to-html';
+import blockContentToHtml from 'https://cdn.skypack.dev/@sanity/block-content-to-html';
 
 const pageTitleMap = {
     index: "Home",
