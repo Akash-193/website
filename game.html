@@ -109,9 +109,20 @@
             visibility: visible;
         }
         
+        /* --- Mobile Styles --- */
         @media (max-width: 768px) {
             .game-container {
                 padding: 0 20px; 
+            }
+            #game-board {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .card {
+                height: 90px;
+            }
+            .card-face {
+                font-size: 1em;
             }
         }
     </style>
@@ -144,7 +155,7 @@
 
         <div style="max-width: 80%; margin: 0 auto 30px auto;">
             <h3 style="text-align: center;">How to Play</h3>
-            <p style="text-align: justify;">Find all the matching pairs by clicking on them!</p>
+            <p style="text-align: justify;">Find all the matching pairs of blue cards to unlock the final gold pair for a surprise message!</p>
         </div>
         
         <div class="game-container">
