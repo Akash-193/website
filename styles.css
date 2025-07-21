@@ -282,3 +282,20 @@ p {
     background-color: #ffc107;
     color: #333;
 }
+
+/* --- Mobile Styles --- */
+/* This code applies only to screens 768px wide or smaller */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column; /* Stack the logo and nav vertically */
+    }
+
+    nav ul {
+        margin-top: 15px; /* Add space between logo and nav links */
+        justify-content: center;
+    }
+
+    .logo span {
+        font-size: 24px; /* Make the name font smaller on mobile */
+    }
+}
