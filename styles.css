@@ -325,3 +325,55 @@ p {
         object-fit: cover; /* Ensure the image covers the area without distortion */
     }
 }
+
+/* --- Footer Styles --- */
+.site-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #f8f9fa; /* A very light gray */
+    padding: 20px 40px;
+    border-top: 1px solid #dee2e6;
+    color: #6c757d; /* A soft gray for the text */
+    font-size: 14px;
+}
+
+.footer-left p {
+    margin: 5px 0;
+    max-width: 100%;
+    text-align: left; /* Align text to the left */
+}
+
+.footer-left .credits {
+    font-size: 12px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between icon group and Contact link */
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px; /* Space between icons */
+}
+
+.social-icons a {
+    color: #6c757d;
+    transition: color 0.2s;
+}
+
+.social-icons a:hover {
+    color: #007bff; /* Color on hover */
+}
+
+.footer-contact {
+    text-decoration: none;
+    color: #6c757d;
+}
+
+.footer-contact:hover {
+    color: #007bff;
+    text-decoration: underline;
+}
