@@ -312,3 +312,17 @@ p {
         font-size: 16px; /* Slightly smaller font for mobile */
     }
 }
+
+/* --- Slider Mobile Styles --- */
+@media (max-width: 768px) {
+    .slide {
+        height: auto; /* Let the slide height be determined by the image */
+        background: none; /* Remove the gray background on mobile */
+    }
+
+    .slide img {
+        width: 100%; /* Make the image take the full width */
+        height: auto; /* Adjust height automatically */
+        object-fit: cover; /* Ensure the image covers the area without distortion */
+    }
+}
