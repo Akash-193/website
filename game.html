@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>A Little Game...</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        .game-container {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .card {
+            width: 100%;
+            height: 120px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .card-front {
+            background-color: #007bff;
+        }
+        .card-back {
+            background-color: #f0f0f0;
+            color: black;
+            transform: rotateY(180deg);
+        }
+        .card.matched {
+            opacity: 0.5;
+            cursor: default;
+        }
+        #game-message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Akash Krishna Logo">
+                <span>Akash Krishna</span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="thesis.html">Thesis</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr class="nav-line" />
+
+    <div class="content">
+        <h1>Memory Match</h1>
+        <hr class="title-line" />
+        <div class="game-container">
+            <div id="game-board"></div>
+            <div id="game-message"></div>
+        </div>
+    </div>
+
+    <script>
+        // --- Game Configuration ---
+
+        // IMPORTANT: Add your matching pairs here. The last pair is the special one!
+        const pairs = [
+            ['Salt', 'Pepper'],
+            ['Bread', 'Butter'],
+            ['Day', 'Night'],
+            ['Sun', 'Moon'],
+            ['Coffee', 'Tea'],
+            ['Maria', 'Akash?'] // The final, special pair
+        ];
+
+        // This is the message that appears when she solves the puzzle.
+        const successMessage = "A perfect match! How about we go on a date?";
+
+        // --- Game Logic ---
+
+        const gameBoard = document.getElementById('game-board');
+        const gameMessage = document.getElementById('game-message');
+
+        let cards = [];
+        let flippedCards = [];
+        let matchedPairs = 0;
+        let lockBoard = false;
+
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+            return array;
+        }
+
+        function createBoard() {
+            const cardValues = shuffle(pairs.flat());
+            cardValues.forEach(value => {
+                const card = document.createElement('div');
+                card.classList.add('card');
+                card.dataset.value = value;
+
+                const cardInner = document.createElement('div');
+                cardInner.classList.add('card-inner');
+
+                const cardFront = document.createElement('div');
+                cardFront.classList.add('card-face', 'card-front');
+
+                const cardBack = document.createElement('div');
+                cardBack.classList.add('card-face', 'card-back');
+                cardBack.textContent = value;
+
+                cardInner.appendChild(cardFront);
+                cardInner.appendChild(cardBack);
+                card.appendChild(cardInner);
+                gameBoard.appendChild(card);
+                
+                card.addEventListener('click', () => flipCard(card));
+                cards.push(card);
+            });
+        }
+        
+        function flipCard(card) {
+            if (lockBoard || card.classList.contains('flipped')) return;
+            card.classList.add('flipped');
+            flippedCards.push(card);
+
+            if (flippedCards.length === 2) {
+                checkForMatch();
+            }
+        }
+
+        function checkForMatch() {
+            lockBoard = true;
+            const [card1, card2] = flippedCards;
+            const value1 = card1.dataset.value;
+            const value2 = card2.dataset.value;
+
+            let isMatch = false;
+            for (const pair of pairs) {
+                if ((pair[0] === value1 && pair[1] === value2) || (pair[0] === value2 && pair[1] === value1)) {
+                    isMatch = true;
+                    break;
+                }
+            }
+
+            if (isMatch) {
+                disableCards();
+            } else {
+                unflipCards();
+            }
+        }
+
+        function disableCards() {
+            flippedCards[0].classList.add('matched');
+            flippedCards[1].classList.add('matched');
+            matchedPairs++;
+            resetBoard();
+            
+            if (matchedPairs === pairs.length) {
+                setTimeout(() => {
+                    gameMessage.textContent = successMessage;
+                }, 500);
+            }
+        }
+
+        function unflipCards() {
+            setTimeout(() => {
+                flippedCards[0].classList.remove('flipped');
+                flippedCards[1].classList.remove('flipped');
+                resetBoard();
+            }, 1000);
+        }
+        
+        function resetBoard() {
+            [flippedCards, lockBoard] = [[], false];
+        }
+
+        createBoard();
+    </script>
+</body>
+</html>
