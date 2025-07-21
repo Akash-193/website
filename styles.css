@@ -377,3 +377,22 @@ p {
     color: #007bff;
     text-decoration: underline;
 }
+
+/* --- Footer Mobile Styles --- */
+@media (max-width: 768px) {
+    .site-footer {
+        flex-direction: column; /* Stack the left and right sections vertically */
+        gap: 20px; /* Add space between the stacked sections */
+        padding: 20px;
+        text-align: center; /* Center-align all text */
+    }
+
+    .footer-left p {
+        text-align: center; /* Ensure copyright text is centered */
+    }
+
+    .footer-right {
+        flex-direction: column; /* Stack the icons and the Connect link */
+        gap: 15px;
+    }
+}
