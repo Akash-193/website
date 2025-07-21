@@ -286,16 +286,25 @@ p {
 /* --- Mobile Styles --- */
 /* This code applies only to screens 768px wide or smaller */
 @media (max-width: 768px) {
+    /* Make the header stack vertically */
     header {
-        flex-direction: column; /* Stack the logo and nav vertically */
+        flex-direction: column;
+        padding: 15px;
     }
 
+    /* Center the logo and give it space at the bottom */
+    .logo {
+        margin-bottom: 15px;
+    }
+
+    /* Make the navigation links smaller and wrap them */
     nav ul {
-        margin-top: 15px; /* Add space between logo and nav links */
-        justify-content: center;
+        justify-content: center; /* Center the links */
+        flex-wrap: wrap; /* Allow links to wrap to the next line */
+        gap: 5px 15px; /* Add spacing between links */
     }
 
-    .logo span {
-        font-size: 24px; /* Make the name font smaller on mobile */
+    nav ul li a {
+        font-size: 16px; /* Slightly smaller font for mobile */
     }
 }
