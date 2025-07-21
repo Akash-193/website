@@ -296,6 +296,10 @@ p {
     .logo {
         margin-bottom: 15px;
     }
+    
+    .logo span {
+        font-size: 24px; /* Make the name font smaller on mobile */
+    }
 
     /* Make the navigation links smaller and wrap them */
     nav ul {

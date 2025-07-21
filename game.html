@@ -108,6 +108,12 @@
             opacity: 1;
             visibility: visible;
         }
+        /* New Mobile Padding */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 0 20px; /* Adds 20px of space on the left and right */
+            }
+        }
     </style>
 </head>
 <body>
@@ -135,6 +141,12 @@
     <div class="content">
         <h1>Memory Match</h1>
         <hr class="title-line" />
+
+        <div style="max-width: 80%; margin: 0 auto 30px auto; text-align: left;">
+            <h3 style="text-align: center;">How to Play</h3>
+            <p style="text-align: center;">Flip two cards at a time to find the matching pairs. Find all the regular (blue) pairs to unlock the final special (gold) pair for a surprise message!</p>
+        </div>
+        
         <div class="game-container">
             <div id="game-board"></div>
             <div id="game-message"></div>
@@ -142,8 +154,7 @@
     </div>
 
     <div class="modal-overlay" id="modal-overlay"></div>
-    <div class="modal" id="success-modal">
-        </div>
+    <div class="modal" id="success-modal"></div>
 
     <script>
         // --- Game Configuration ---
@@ -189,7 +200,6 @@
                 const cardFront = document.createElement('div');
                 cardFront.classList.add('card-face', 'card-front');
                 
-                // If this is a special card, mark it as locked
                 if (specialPair.includes(value)) {
                     card.dataset.locked = 'true';
                     cardFront.classList.add('locked');
@@ -209,7 +219,6 @@
         }
         
         function flipCard(card) {
-            // Prevent flipping if board is locked, card is already flipped, or card is special and locked
             if (lockBoard || card.classList.contains('flipped') || card.dataset.locked === 'true') {
                  return;
             }
@@ -248,12 +257,10 @@
             matchedPairs++;
             resetBoard();
             
-            // Check if all NORMAL pairs are matched to unlock the special cards
             if (matchedPairs === pairs.length - 1) {
                 unlockSpecialCards();
             }
 
-            // Check if ALL pairs are matched to show the final message
             if (matchedPairs === pairs.length) {
                 setTimeout(() => {
                     showSuccessModal();
@@ -269,7 +276,7 @@
         }
 
         function showSuccessModal() {
-            gameMessage.textContent = ''; // Clear the intermediate message
+            gameMessage.textContent = '';
             successModal.innerHTML = successMessage;
             modalOverlay.classList.add('show');
             successModal.classList.add('show');
