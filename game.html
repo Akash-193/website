@@ -11,6 +11,7 @@
             max-width: 800px;
             margin: 40px auto;
             text-align: center;
+            position: relative; /* Needed for the modal */
         }
         #game-board {
             display: grid;
@@ -52,6 +53,9 @@
         .card-front {
             background-color: #007bff;
         }
+        .card-front.locked {
+            background-color: #ffc107; /* Gold color for special cards */
+        }
         .card-back {
             background-color: #f0f0f0;
             color: black;
@@ -66,6 +70,43 @@
             font-size: 1.5em;
             font-weight: bold;
             min-height: 50px;
+        }
+        /* --- Modal Animation Styles --- */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-align: center;
+            font-size: 2em;
+            color: #333;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            visibility: hidden;
+        }
+        .modal.show {
+            transform: translate(-50%, -50%) scale(1);
+            visibility: visible;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            visibility: hidden;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
         }
     </style>
 </head>
@@ -100,10 +141,12 @@
         </div>
     </div>
 
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="success-modal">
+        </div>
+
     <script>
         // --- Game Configuration ---
-
-        // IMPORTANT: Add your matching pairs here. The last pair is the special one!
         const pairs = [
             ['Salt', 'Pepper'],
             ['Bread', 'Butter'],
@@ -112,16 +155,15 @@
             ['Coffee', 'Tea'],
             ['Maria', 'Akash?'] // The final, special pair
         ];
-
-        // This is the message that appears when she solves the puzzle.
-        const successMessage = "A perfect match! How about we go on a date?";
+        const successMessage = "A perfect match!<br>How about we go on a date?";
 
         // --- Game Logic ---
-
         const gameBoard = document.getElementById('game-board');
         const gameMessage = document.getElementById('game-message');
+        const successModal = document.getElementById('success-modal');
+        const modalOverlay = document.getElementById('modal-overlay');
 
-        let cards = [];
+        const specialPair = pairs[pairs.length - 1];
         let flippedCards = [];
         let matchedPairs = 0;
         let lockBoard = false;
@@ -146,6 +188,12 @@
 
                 const cardFront = document.createElement('div');
                 cardFront.classList.add('card-face', 'card-front');
+                
+                // If this is a special card, mark it as locked
+                if (specialPair.includes(value)) {
+                    card.dataset.locked = 'true';
+                    cardFront.classList.add('locked');
+                }
 
                 const cardBack = document.createElement('div');
                 cardBack.classList.add('card-face', 'card-back');
@@ -157,12 +205,14 @@
                 gameBoard.appendChild(card);
                 
                 card.addEventListener('click', () => flipCard(card));
-                cards.push(card);
             });
         }
         
         function flipCard(card) {
-            if (lockBoard || card.classList.contains('flipped')) return;
+            // Prevent flipping if board is locked, card is already flipped, or card is special and locked
+            if (lockBoard || card.classList.contains('flipped') || card.dataset.locked === 'true') {
+                 return;
+            }
             card.classList.add('flipped');
             flippedCards.push(card);
 
@@ -198,11 +248,31 @@
             matchedPairs++;
             resetBoard();
             
+            // Check if all NORMAL pairs are matched to unlock the special cards
+            if (matchedPairs === pairs.length - 1) {
+                unlockSpecialCards();
+            }
+
+            // Check if ALL pairs are matched to show the final message
             if (matchedPairs === pairs.length) {
                 setTimeout(() => {
-                    gameMessage.textContent = successMessage;
+                    showSuccessModal();
                 }, 500);
             }
+        }
+        
+        function unlockSpecialCards() {
+            gameMessage.textContent = 'One special pair left...';
+            document.querySelectorAll('[data-locked="true"]').forEach(card => {
+                card.dataset.locked = 'false';
+            });
+        }
+
+        function showSuccessModal() {
+            gameMessage.textContent = ''; // Clear the intermediate message
+            successModal.innerHTML = successMessage;
+            modalOverlay.classList.add('show');
+            successModal.classList.add('show');
         }
 
         function unflipCards() {
