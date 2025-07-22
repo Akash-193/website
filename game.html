@@ -174,21 +174,26 @@
     
     <script>
         // --- Password Configuration ---
-        const accessCode = 'Bumble'; // Change this to your desired password
+        const encodedAccessCode = 'QnVtYmxl'; 
 
         // --- Protection Logic ---
         function checkAccess() {
             const enteredCode = prompt("Please enter the access code to play:");
             const gameContent = document.getElementById('game-content');
             
-            if (enteredCode === accessCode) {
-                gameContent.style.display = 'block'; // Show the game
-                initializeGame(); // Start the game only if the password is correct
+            // atob() is a built-in browser function to decode Base64
+            const decodedAccessCode = atob(encodedAccessCode);
+
+            if (enteredCode === decodedAccessCode) {
+                gameContent.style.display = 'block';
+                initializeGame();
             } else {
                 alert("Sorry, that's not the right code.");
-                window.location.href = 'index.html'; // Redirect to homepage
+                window.location.href = 'index.html';
             }
         }
+        
+        checkAccess();
     </script>
 
     <script>
