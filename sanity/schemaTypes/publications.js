@@ -3,60 +3,39 @@ export default {
   title: 'Publication',
   type: 'document',
   fields: [
+    // ... your 'doi' field ...
+    {
+      name: 'doi',
+      title: 'DOI',
+      description: 'Paste a URL or DOI here, then use the "Fetch from DOI" action below.',
+      type: 'string',
+    },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required(),
+      readOnly: true,
     },
+    // Add the two new fields below
+    {
+      name: 'highlightImage',
+      title: 'Highlight Image',
+      type: 'image',
+    },
+    {
+      name: 'summary',
+      title: 'Summary',
+      description: 'A short, one or two-sentence summary for the highlight card.',
+      type: 'text',
+    },
+    // ... all your other fields (authors, year, etc.) remain the same ...
     {
       name: 'authors',
       title: 'Authors',
       type: 'string',
-      description: 'Enter author names, separated by commas.',
+      readOnly: true,
     },
-    {
-      name: 'journal',
-      title: 'Journal or Preprint Info',
-      type: 'string',
-      description: 'e.g., J. Chem. Inf. Model. or ChemRxiv (2025) preprint',
-    },
-    {
-        name: 'year',
-        title: 'Year',
-        type: 'number',
-    },
-    {
-      name: 'link',
-      title: 'Link (DOI or Preprint URL)',
-      type: 'url',
-    },
-    {
-        name: 'status',
-        title: 'Status',
-        type: 'string',
-        options: {
-            list: ['Preprint', 'Published'],
-            layout: 'radio'
-        }
-    },
-    {
-      name: 'tags',
-      title: 'Tags / Research Themes',
-      type: 'array',
-      of: [{type: 'string'}],
-      options: {
-        layout: 'tags'
-      }
-    },
+    // ... etc.
   ],
-  orderings: [
-    {
-      title: 'Year, Newest First',
-      name: 'yearDesc',
-      by: [
-        {field: 'year', direction: 'desc'}
-      ]
-    }
-  ]
+  // ... your orderings array ...
 };

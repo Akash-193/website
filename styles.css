@@ -396,3 +396,60 @@ p {
         gap: 15px;
     }
 }
+
+/* --- Publication Highlights Grid --- */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Creates a two-column grid */
+    gap: 40px;
+    margin-top: 30px;
+    text-align: left;
+    max-width: 100%;
+}
+
+.highlight-card {
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    padding: 20px;
+}
+
+.highlight-card img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 15px;
+}
+
+.highlight-card h3 { /* Publication Title */
+    font-size: 1.2em;
+    margin-top: 0;
+}
+
+.highlight-card .summary { /* The short description */
+    font-size: 1em;
+    color: #555;
+    line-height: 1.6;
+}
+
+.highlight-card .authors { /* Author list */
+    font-size: 0.9em;
+    color: #777;
+    margin-top: 15px;
+}
+
+.highlight-card .journal-link { /* Journal info */
+    font-size: 0.9em;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.highlight-card .journal-link:hover {
+    text-decoration: underline;
+}
+
+/* Make the grid a single column on mobile */
+@media (max-width: 768px) {
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+}

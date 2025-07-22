@@ -95,7 +95,7 @@ if (document.getElementById(descId)) {
 // === PUBLICATIONS PAGE LOGIC ===
 const publicationList = document.getElementById('publication-list');
 if (publicationList) {
-    // Fetch all publications from Sanity, ordered by year
+    // 1. UPDATE THE FETCH QUERY to get the new fields
     sanityClient.fetch(`*[_type == "publication"] | order(year desc) {
         title,
         authors,
@@ -103,7 +103,9 @@ if (publicationList) {
         year,
         link,
         status,
-        tags
+        tags,
+        summary,
+        "imageUrl": highlightImage.asset->url
     }`).then(publications => {
         if (publications && publications.length > 0) {
             renderPublications(publications);
@@ -117,27 +119,35 @@ if (publicationList) {
     });
 }
 
+// 2. REPLACE the entire renderPublications function with this new version
 function renderPublications(publications) {
     publicationList.innerHTML = ''; // Clear the "Loading..." text
-    publications.forEach(pub => {
-        // Create a container for the publication item
-        const item = document.createElement('div');
-        item.className = 'publication-item';
-        // Store tags on the element for filtering
-        item.dataset.tags = pub.tags ? pub.tags.join(',') : '';
+    
+    // Create a container for our new grid
+    const grid = document.createElement('div');
+    grid.className = 'highlights-grid';
 
-        // Generate the HTML for the publication
-        item.innerHTML = `
-            <p class="pub-authors">${pub.authors}.</p>
-            <p class="pub-title"><a href="${pub.link}" target="_blank" rel="noopener noreferrer">${pub.title}</a></p>
-            <p class="pub-journal">${pub.journal} (${pub.year})</p>
-            <div class="pub-tags">
-                ${pub.status ? `<span class="pub-tag status-tag">${pub.status}</span>` : ''}
-                ${pub.tags ? pub.tags.map(tag => `<span class="pub-tag theme-tag">${tag}</span>`).join('') : ''}
+    publications.forEach(pub => {
+        // This is the container for the filterable item
+        const itemWrapper = document.createElement('div');
+        itemWrapper.dataset.tags = pub.tags ? pub.tags.join(',') : '';
+
+        // Generate the HTML for the highlight card
+        const cardHTML = `
+            <div class="highlight-card">
+                ${pub.imageUrl ? `<a href="${pub.link}" target="_blank" rel="noopener noreferrer"><img src="${pub.imageUrl}" alt="${pub.title} cover image"></a>` : ''}
+                <h3><a href="${pub.link}" target="_blank" rel="noopener noreferrer">${pub.title}</a></h3>
+                ${pub.summary ? `<p class="summary">${pub.summary}</p>` : ''}
+                <p class="authors">${pub.authors}</p>
+                <a href="${pub.link}" class="journal-link" target="_blank" rel="noopener noreferrer">${pub.journal} (${pub.year})</a>
             </div>
         `;
-        publicationList.appendChild(item);
+
+        itemWrapper.innerHTML = cardHTML;
+        grid.appendChild(itemWrapper);
     });
+
+    publicationList.appendChild(grid);
 }
 
 function setupFilters(publications) {
