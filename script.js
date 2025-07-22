@@ -116,7 +116,6 @@ if (publicationList) {
     });
 }
 
-// Updated function to render the grid
 function renderPublications(publications) {
     publicationList.innerHTML = ''; // Clear the "Loading..." text
     
@@ -127,14 +126,22 @@ function renderPublications(publications) {
         const itemWrapper = document.createElement('div');
         itemWrapper.dataset.tags = pub.tags ? pub.tags.join(',') : '';
 
-        // Generate the HTML for the highlight card
+        // Generate the HTML for the highlight card with new containers
         const cardHTML = `
             <div class="highlight-card">
-                ${pub.imageUrl ? `<a href="${pub.link}" target="_blank" rel="noopener noreferrer"><img src="${pub.imageUrl}" alt="${pub.title} cover image"></a>` : ''}
-                <h3><a href="${pub.link}" target="_blank" rel="noopener noreferrer">${pub.title}</a></h3>
-                ${pub.summary ? `<div class="summary">${blockContentToHtml({ blocks: pub.summary })}</div>` : ''}
-                <p class="authors">${pub.authors}</p>
-                <a href="${pub.link}" class="journal-link" target="_blank" rel="noopener noreferrer">${pub.journal} (${pub.year})</a>
+                ${pub.imageUrl ? `
+                    <div class="highlight-image-container">
+                        <a href="${pub.link}" target="_blank" rel="noopener noreferrer">
+                            <img src="${pub.imageUrl}" alt="${pub.title} cover image">
+                        </a>
+                    </div>
+                ` : ''}
+                <div class="highlight-text-container">
+                    <h3><a href="${pub.link}" target="_blank" rel="noopener noreferrer">${pub.title}</a></h3>
+                    ${pub.summary ? `<div class="summary">${blockContentToHtml({ blocks: pub.summary })}</div>` : ''}
+                    <p class="authors">${pub.authors}</p>
+                    <a href="${pub.link}" class="journal-link" target="_blank" rel="noopener noreferrer">${pub.journal} (${pub.year})</a>
+                </div>
             </div>
         `;
 

@@ -400,7 +400,7 @@ p {
 /* --- Publication Highlights Grid --- */
 .highlights-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Creates a two-column grid */
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     margin-top: 30px;
     text-align: left;
@@ -411,46 +411,71 @@ p {
     background-color: #fff;
     border: 1px solid #dee2e6;
     padding: 20px;
+    display: flex; /* <-- Add this to enable flexbox */
+    gap: 20px; /* <-- Adds space between the image and text */
+    align-items: flex-start; /* Aligns items to the top */
+}
+
+/* New container for the image */
+.highlight-image-container {
+    flex: 0 0 150px; /* Flex-shrink: 0, Flex-grow: 0, Basis: 150px width */
+    width: 150px;
 }
 
 .highlight-card img {
     max-width: 100%;
     height: auto;
-    margin-bottom: 15px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 6px 20px rgba(0,0,0,0.1);
 }
 
-.highlight-card h3 { /* Publication Title */
-    font-size: 1.2em;
-    margin-top: 0;
+/* New container for the text content */
+.highlight-text-container {
+    flex: 1; /* Allows this container to take up the remaining space */
 }
 
-.highlight-card .summary { /* The short description */
+.highlight-text-container h3 {
+    font-size: 1.2em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.highlight-text-container .summary {
     font-size: 1em;
     color: #555;
     line-height: 1.6;
+    margin-bottom: 15px;
 }
 
-.highlight-card .authors { /* Author list */
+.highlight-text-container .authors {
     font-size: 0.9em;
     color: #777;
-    margin-top: 15px;
 }
 
-.highlight-card .journal-link { /* Journal info */
+.highlight-text-container .journal-link {
     font-size: 0.9em;
     font-weight: bold;
     color: #007bff;
     text-decoration: none;
+    display: block;
+    margin-top: 15px;
 }
 
-.highlight-card .journal-link:hover {
+.highlight-text-container .journal-link:hover {
     text-decoration: underline;
 }
 
-/* Make the grid a single column on mobile */
-@media (max-width: 768px) {
+/* Update mobile view to stack them again */
+@media (max-width: 992px) { /* Adjusted breakpoint for better stacking */
     .highlights-grid {
         grid-template-columns: 1fr;
+    }
+    .highlight-card {
+        flex-direction: column; /* Stack image and text vertically on smaller screens */
+        align-items: center;
+        text-align: center;
+    }
+    .highlight-image-container {
+       width: 60%; /* Allow image to be a bit bigger on mobile */
+       margin-bottom: 20px;
     }
 }
