@@ -3,20 +3,12 @@ export default {
   title: 'Publication',
   type: 'document',
   fields: [
-    // ... your 'doi' field ...
-    {
-      name: 'doi',
-      title: 'DOI',
-      description: 'Paste a URL or DOI here, then use the "Fetch from DOI" action below.',
-      type: 'string',
-    },
     {
       name: 'title',
       title: 'Title',
       type: 'string',
-      readOnly: true,
+      validation: Rule => Rule.required(),
     },
-    // Add the two new fields below
     {
       name: 'highlightImage',
       title: 'Highlight Image',
@@ -26,16 +18,55 @@ export default {
       name: 'summary',
       title: 'Summary',
       description: 'A short, one or two-sentence summary for the highlight card.',
-      type: 'text',
+      type: 'array',
+      of: [{type: 'block'}]
     },
-    // ... all your other fields (authors, year, etc.) remain the same ...
     {
       name: 'authors',
       title: 'Authors',
       type: 'string',
-      readOnly: true,
     },
-    // ... etc.
+    {
+      name: 'journal',
+      title: 'Journal or Preprint Info',
+      type: 'string',
+    },
+    {
+        name: 'year',
+        title: 'Year',
+        type: 'number',
+    },
+    {
+      name: 'link',
+      title: 'Link (DOI or Preprint URL)',
+      type: 'url',
+    },
+    {
+        name: 'status',
+        title: 'Status',
+        type: 'string',
+        options: {
+            list: ['Preprint', 'Published'],
+            layout: 'radio'
+        }
+    },
+    {
+      name: 'tags',
+      title: 'Tags / Research Themes',
+      type: 'array',
+      of: [{type: 'string'}],
+      options: {
+        layout: 'tags'
+      }
+    },
   ],
-  // ... your orderings array ...
+  orderings: [
+    {
+      title: 'Year, Newest First',
+      name: 'yearDesc',
+      by: [
+        {field: 'year', direction: 'desc'}
+      ]
+    }
+  ]
 };

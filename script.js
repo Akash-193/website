@@ -71,16 +71,13 @@ const titleId = `${page}-title`;
 const descId = `${page}-description`;
 
 if (document.getElementById(descId)) {
-    // Change #1: Added "displayTitle" to the query below
     sanityClient.fetch(`*[_type == "content" && title == "${pageTitleMap[page]}"][0]{
         title,
         displayTitle,
         body
     }`).then(data => {
         if (data) {
-            // Change #2: Updated this logic to use "displayTitle" if it exists
             if (document.getElementById(titleId) && data.title) {
-                // Use the displayTitle if it exists, otherwise fall back to the main title
                 document.getElementById(titleId).innerText = data.displayTitle || data.title;
             }
             if (document.getElementById(descId) && data.body) {
@@ -95,7 +92,7 @@ if (document.getElementById(descId)) {
 // === PUBLICATIONS PAGE LOGIC ===
 const publicationList = document.getElementById('publication-list');
 if (publicationList) {
-    // 1. UPDATE THE FETCH QUERY to get the new fields
+    // Updated fetch query for new fields
     sanityClient.fetch(`*[_type == "publication"] | order(year desc) {
         title,
         authors,
@@ -119,16 +116,14 @@ if (publicationList) {
     });
 }
 
-// 2. REPLACE the entire renderPublications function with this new version
+// Updated function to render the grid
 function renderPublications(publications) {
     publicationList.innerHTML = ''; // Clear the "Loading..." text
     
-    // Create a container for our new grid
     const grid = document.createElement('div');
     grid.className = 'highlights-grid';
 
     publications.forEach(pub => {
-        // This is the container for the filterable item
         const itemWrapper = document.createElement('div');
         itemWrapper.dataset.tags = pub.tags ? pub.tags.join(',') : '';
 
@@ -137,7 +132,7 @@ function renderPublications(publications) {
             <div class="highlight-card">
                 ${pub.imageUrl ? `<a href="${pub.link}" target="_blank" rel="noopener noreferrer"><img src="${pub.imageUrl}" alt="${pub.title} cover image"></a>` : ''}
                 <h3><a href="${pub.link}" target="_blank" rel="noopener noreferrer">${pub.title}</a></h3>
-                ${pub.summary ? `<p class="summary">${pub.summary}</p>` : ''}
+                ${pub.summary ? `<div class="summary">${blockContentToHtml({ blocks: pub.summary })}</div>` : ''}
                 <p class="authors">${pub.authors}</p>
                 <a href="${pub.link}" class="journal-link" target="_blank" rel="noopener noreferrer">${pub.journal} (${pub.year})</a>
             </div>
@@ -150,9 +145,11 @@ function renderPublications(publications) {
     publicationList.appendChild(grid);
 }
 
+// This function filters the grid items, but needs a small correction to work with the new structure
 function setupFilters(publications) {
     const filterContainer = document.getElementById('filter-buttons');
-    // Get all unique tags from all publications
+    if (!filterContainer) return; // Exit if no filter container
+    
     const allTags = new Set();
     publications.forEach(pub => {
         if (pub.tags) {
@@ -160,14 +157,14 @@ function setupFilters(publications) {
         }
     });
 
-    // Create a button for the "All" filter
+    // Create the "All" button
     const allButton = document.createElement('button');
     allButton.className = 'filter-btn active';
     allButton.innerText = 'All';
     allButton.addEventListener('click', () => filterPublications('all'));
     filterContainer.appendChild(allButton);
 
-    // Create a button for each unique tag
+    // Create buttons for each tag
     allTags.forEach(tag => {
         const button = document.createElement('button');
         button.className = 'filter-btn';
@@ -177,11 +174,12 @@ function setupFilters(publications) {
     });
 }
 
+// This function needs to target the new wrapper elements
 function filterPublications(tag) {
-    const items = document.querySelectorAll('.publication-item');
+    // The querySelector should target the 'div's inside the grid
+    const items = document.querySelectorAll('#publication-list .highlights-grid > div');
     const buttons = document.querySelectorAll('.filter-btn');
 
-    // Update active button style
     buttons.forEach(button => {
         if (button.innerText.toLowerCase() === tag.toLowerCase()) {
             button.classList.add('active');
@@ -189,10 +187,10 @@ function filterPublications(tag) {
             button.classList.remove('active');
         }
     });
-
-    // Show or hide publication items based on the selected tag
+    
     items.forEach(item => {
-        if (tag === 'all' || item.dataset.tags.includes(tag)) {
+        // Check dataset.tags on the wrapper div
+        if (tag === 'all' || (item.dataset.tags && item.dataset.tags.includes(tag))) {
             item.style.display = 'block';
         } else {
             item.style.display = 'none';
