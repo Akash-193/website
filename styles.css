@@ -342,107 +342,87 @@ p {
 /* --- Publication Highlights Grid (Updated & Complete) --- */
 .highlights-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px auto;
+    max-width: 90%;
     text-align: left;
-    max-width: 100%;
-}
-
-/* Each card in the grid */
-.highlight-card {
-    background-color: #fff;
-    border: 1px solid #dee2e6;
-    padding: 20px;
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 20px;
-    align-items: start;
-}
-
-/* Image container */
-.highlight-image-container {
-    width: 220px;
-    flex: none;
-}
-
-.highlight-card img {
-    max-width: 100%;
+  }
+  
+  .highlight-card {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    display: flex;
+    padding: 15px;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  }
+  
+  .highlight-image-container {
+    flex: 0 0 120px;
+    max-width: 120px;
+  }
+  
+  .highlight-image-container img {
+    width: 100%;
     height: auto;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 6px 20px rgba(0,0,0,0.1);
-}
-
-/* Text container beside image */
-.highlight-text-container {
+    border-radius: 4px;
+  }
+  
+  .highlight-text-container {
+    flex: 1;
     display: flex;
     flex-direction: column;
-}
-
-.highlight-text-container h3 {
-    font-size: 1.1em;
-    margin-top: 0;
-    margin-bottom: 10px;
-}
-
-.highlight-text-container .summary {
+    justify-content: space-between;
+  }
+  
+  .highlight-text-container h3 {
+    font-size: 1em;
+    margin: 0 0 10px 0;
+    font-weight: 700;
+  }
+  
+  .highlight-text-container .summary {
     font-size: 0.9em;
-    color: #555;
-    line-height: 1.6;
-    margin-bottom: 15px;
-    flex-grow: 1;
-}
-
-.highlight-text-container .summary p {
+    color: #333;
+    line-height: 1.5;
+  }
+  
+  .highlight-text-container .summary p {
+    margin: 0 0 8px 0;
     text-align: left;
-    max-width: 100%;
-}
-
-.highlight-text-container .authors {
-    font-size: 0.8em;
-    color: #777;
-    text-align: left;
-    margin-bottom: 10px;
-}
-
-.highlight-text-container .journal-link {
+  }
+  
+  .highlight-text-container .authors {
     font-size: 0.85em;
-    font-weight: bold;
+    font-style: italic;
+    color: #555;
+    margin-top: 10px;
+  }
+  
+  .highlight-text-container .journal-link {
+    font-size: 0.85em;
+    font-weight: 600;
     color: #007bff;
-    text-decoration: none;
-    display: block;
-    margin-top: auto;
-    padding-top: 10px;
-}
-
-.highlight-text-container .journal-link:hover {
+    margin-top: 8px;
+    display: inline-block;
+  }
+  
+  .highlight-text-container .journal-link:hover {
     text-decoration: underline;
-}
-
-/* --- Mobile Responsive --- */
-@media (max-width: 992px) {
-    .highlights-grid {
-        grid-template-columns: 1fr;
-    }
-
+  }
+  
+  @media (max-width: 768px) {
     .highlight-card {
-        grid-template-columns: 1fr;
-        text-align: center;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
     }
-
-    .highlight-image-container {
-        width: 100%;
-        margin-bottom: 20px;
-        display: flex;
-        justify-content: center;
-    }
-
-    .highlight-text-container {
-        align-items: center;
-    }
-
     .highlight-text-container .summary p,
     .highlight-text-container .authors,
     .highlight-text-container .journal-link {
-        text-align: center;
+      text-align: center;
     }
-}
+  }
+  
