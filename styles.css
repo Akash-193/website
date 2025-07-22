@@ -413,13 +413,13 @@ p {
     padding: 20px;
     display: flex;
     gap: 20px;
-    align-items: flex-start;
+    /* align-items: flex-start; <-- REMOVED this line to allow text to fill the height */
 }
 
 /* Container for the image */
 .highlight-image-container {
-    flex: 0 0 200px; /* Increased width from 150px to 200px */
-    width: 200px;
+    flex: 0 0 220px; /* Increased width to make image larger */
+    width: 220px;
 }
 
 .highlight-card img {
@@ -431,40 +431,43 @@ p {
 /* Container for the text content */
 .highlight-text-container {
     flex: 1;
+    display: flex; /* Added to help with vertical layout */
+    flex-direction: column; /* Stack text elements vertically */
 }
 
 .highlight-text-container h3 {
-    font-size: 1.2em;
+    font-size: 1.1em; /* Slightly smaller title */
     margin-top: 0;
     margin-bottom: 10px;
 }
 
 .highlight-text-container .summary {
-    font-size: 0.95em; /* Slightly smaller font size */
+    font-size: 0.9em; /* Smaller font size for summary */
     color: #555;
     line-height: 1.6;
     margin-bottom: 15px;
+    flex-grow: 1; /* Allows summary to push authors/journal to the bottom */
 }
 
-/* This new rule fixes the text alignment issue */
 .highlight-text-container .summary p {
     text-align: left;
     max-width: 100%;
 }
 
 .highlight-text-container .authors {
-    font-size: 0.85em; /* Slightly smaller font size */
+    font-size: 0.8em; /* Smaller font size for authors */
     color: #777;
-    text-align: left; /* Fixes alignment for the author list */
+    text-align: left;
 }
 
 .highlight-text-container .journal-link {
-    font-size: 0.9em;
+    font-size: 0.85em;
     font-weight: bold;
     color: #007bff;
     text-decoration: none;
     display: block;
-    margin-top: 15px;
+    margin-top: auto; /* Pushes this to the bottom of the card */
+    padding-top: 10px; /* Adds space above the journal link */
 }
 
 .highlight-text-container .journal-link:hover {
@@ -487,5 +490,8 @@ p {
     }
     .highlight-text-container .summary p, .highlight-text-container .authors {
         text-align: center; /* Center text on mobile */
+    }
+    .highlight-text-container .journal-link {
+        margin-top: 15px;
     }
 }
