@@ -43,13 +43,22 @@ if (dotsContainer && slides.length > 0) {
 
 // === NAV ACTIVE HIGHLIGHT ===
 const navLinks = document.querySelectorAll("nav ul li a");
-const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+const currentPath = window.location.pathname;
 
 navLinks.forEach(link => {
-    if (link.getAttribute("href").includes(currentPage)) {
-        link.classList.add("active");
-    } else {
-        link.classList.remove("active");
+    // First, remove 'active' from all links
+    link.classList.remove('active');
+
+    // Get the href from the link
+    const linkPath = link.getAttribute("href");
+
+    // Check for an exact match or if it's the homepage
+    if (currentPath === '/' || currentPath === '/index.html') {
+        if (linkPath === 'index.html') {
+            link.classList.add('active');
+        }
+    } else if (currentPath.includes(linkPath)) {
+        link.classList.add('active');
     }
 });
 
