@@ -16,35 +16,33 @@ header {
     background: white;
 }
 
-/* Updated Logo Styling */
 .logo a {
     display: flex;
-    align-items: center; /* This vertically aligns the logo and text */
+    align-items: center;
     text-decoration: none;
     color: black;
 }
 
 .logo img {
-    height: 40px; /* You can change this value to make the logo smaller or larger */
-    margin-right: 15px; /* Adds space between the logo and your name */
+    height: 40px;
+    margin-right: 15px;
 }
 
 .logo span {
-    font-size: 28px; /* Reduced font size slightly to match logo */
+    font-size: 28px;
     font-weight: bold;
     font-family: 'Nunito', sans-serif;
 }
 
-/* Navigation Menu Styling */
 nav {
-    display: flex; /* Added to help with alignment */
-    align-items: center; /* Added to vertically center the nav menu */
+    display: flex;
+    align-items: center;
 }
 
 nav ul {
     list-style: none;
     padding: 0;
-    margin: 0; /* Removed default margin */
+    margin: 0;
     display: flex;
     justify-content: flex-end;
     width: 100%;
@@ -56,9 +54,9 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: gray; /* Change font color */
-    font-size: 18px; /* Change font size */
-    font-family: 'Nunito', sans-serif; /* Change font style */
+    color: gray;
+    font-size: 18px;
+    font-family: 'Nunito', sans-serif;
 }
 
 nav ul li a.active {
@@ -66,35 +64,33 @@ nav ul li a.active {
     font-weight: bold;
 }
 
-/* "Welcome to my Space" Styling */
+/* Title Styling */
 .content h1 {
-    font-size: 32px; /* Change font size */
-    color: black; /* Change font color */
-    font-family: 'Nunito', sans-serif; /* Change font style */
+    font-size: 32px;
+    color: black;
+    font-family: 'Nunito', sans-serif;
 }
 
-/* "Your description goes here." Styling */
 .description {
-    font-size: 18px; /* Change font size */
-    color: #333; /* Change font color */
-    font-family: 'Nunito', sans-serif; /* Change font style */
-    text-align: justify; /* Justified text alignment */
-    max-width: 80%; /* Adjust width to match the slider */
-    margin: 0 auto; /* Center align the text */
+    font-size: 18px;
+    color: #333;
+    font-family: 'Nunito', sans-serif;
+    text-align: justify;
+    max-width: 80%;
+    margin: 0 auto;
 }
 
-/* General paragraph styling */
 p {
-    font-size: 18px; /* Adjust font size */
-    color: #333; /* Adjust font color */
-    font-family: 'Nunito', sans-serif; /* Set font style */
-    text-align: justify; /* Justify text alignment */
-    max-width: 80%; /* Match the slider width */
-    margin: 0 auto 20px auto; /* Center-align and add bottom spacing */
-    line-height: 1.6; /* Improve readability */
+    font-size: 18px;
+    color: #333;
+    font-family: 'Nunito', sans-serif;
+    text-align: justify;
+    max-width: 80%;
+    margin: 0 auto 20px auto;
+    line-height: 1.6;
 }
 
-/* Horizontal Line Below Navigation */
+/* Navigation Divider */
 .nav-line {
     border: none;
     height: 2px;
@@ -102,7 +98,7 @@ p {
     margin-top: 5px;
 }
 
-/* Slider */
+/* Slider Styles */
 .slider-container {
     position: relative;
     width: 80%;
@@ -117,19 +113,18 @@ p {
 
 .slide {
     min-width: 100%;
-    
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 .slide img {
-    width: 100%; 
+    width: 100%;
     height: auto;
     display: block;
 }
 
-/* Navigation Buttons */
+/* Slider Navigation */
 .prev, .next {
     position: absolute;
     top: 50%;
@@ -171,8 +166,7 @@ p {
     margin: 10px auto;
 }
 
-/* === Publications Page Styling === */
-
+/* === Publications === */
 .filters {
     display: flex;
     justify-content: center;
@@ -222,55 +216,86 @@ p {
     margin: 20px auto;
 }
 
-/* THIS SECTION IS NO LONGER USED FOR THE HIGHLIGHTS GRID */
-.publication-item { }
-.publication-item p { }
-.pub-authors { }
-.pub-title { }
-.pub-title a { }
-.pub-title a:hover { }
-.pub-journal { }
-.pub-tags { }
-.pub-tag { }
-.status-tag { }
-.theme-tag { }
-
-/* --- Mobile Styles --- */
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        padding: 15px;
-    }
-    .logo {
-        margin-bottom: 15px;
-    }
-    .logo span {
-        font-size: 24px;
-    }
-    nav ul {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 5px 15px;
-    }
-    nav ul li a {
-        font-size: 16px;
-    }
+/* Publication Highlights Grid */
+.highlights-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    width: 100%;
 }
 
-/* --- Slider Mobile Styles --- */
-@media (max-width: 768px) {
-    .slide {
-        height: auto;
-        background: none;
-    }
-    .slide img {
-        width: 100%;
-        height: auto;
-        object-fit: cover;
-    }
+/* Highlight Card Styling */
+.highlight-card {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 20px;
+    background-color: #fff;
+    border: 1px solid #dee2e6;
+    width: 100%;
 }
 
-/* --- Footer Styles --- */
+.highlight-image-container {
+    flex-shrink: 0;
+    width: auto;
+    max-width: 250px;
+}
+
+.highlight-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+}
+
+.highlight-text-container {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.highlight-text-container h3 {
+    font-size: 1.1em;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.highlight-text-container .summary {
+    font-size: 0.9em;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.highlight-text-container .summary p {
+    text-align: left;
+    max-width: 100%;
+}
+
+.highlight-text-container .authors {
+    font-size: 0.8em;
+    color: #777;
+    text-align: left;
+}
+
+.highlight-text-container .journal-link {
+    font-size: 0.85em;
+    font-weight: bold;
+    color: #007bff;
+    text-decoration: none;
+    display: block;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.highlight-text-container .journal-link:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
 .site-footer {
     display: flex;
     justify-content: space-between;
@@ -322,8 +347,51 @@ p {
     text-decoration: underline;
 }
 
-/* --- Footer Mobile Styles --- */
+/* === Mobile Responsive Styles === */
+@media (max-width: 992px) {
+    .highlights-grid {
+        grid-template-columns: 1fr;
+    }
+    .highlight-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .highlight-image-container {
+        max-width: 80%;
+        margin-bottom: 20px;
+    }
+    .highlight-text-container .summary p,
+    .highlight-text-container .authors,
+    .highlight-text-container .journal-link {
+        text-align: center;
+    }
+}
+
 @media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+    .logo {
+        margin-bottom: 15px;
+    }
+    .logo span {
+        font-size: 24px;
+    }
+    nav ul {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 5px 15px;
+    }
+    nav ul li a {
+        font-size: 16px;
+    }
+
+    .slide img {
+        object-fit: cover;
+    }
+
     .site-footer {
         flex-direction: column;
         gap: 20px;
@@ -338,91 +406,3 @@ p {
         gap: 15px;
     }
 }
-
-/* --- Publication Highlights Grid (Updated & Complete) --- */
-.highlights-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin: 30px auto;
-    max-width: 90%;
-    text-align: left;
-  }
-  
-  .highlight-card {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    display: flex;
-    padding: 15px;
-    gap: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  }
-  
-  .highlight-image-container {
-    flex: 0 0 120px;
-    max-width: 120px;
-  }
-  
-  .highlight-image-container img {
-    width: 100%;
-    height: auto;
-    border-radius: 4px;
-  }
-  
-  .highlight-text-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
-  .highlight-text-container h3 {
-    font-size: 1em;
-    margin: 0 0 10px 0;
-    font-weight: 700;
-  }
-  
-  .highlight-text-container .summary {
-    font-size: 0.9em;
-    color: #333;
-    line-height: 1.5;
-  }
-  
-  .highlight-text-container .summary p {
-    margin: 0 0 8px 0;
-    text-align: left;
-  }
-  
-  .highlight-text-container .authors {
-    font-size: 0.85em;
-    font-style: italic;
-    color: #555;
-    margin-top: 10px;
-  }
-  
-  .highlight-text-container .journal-link {
-    font-size: 0.85em;
-    font-weight: 600;
-    color: #007bff;
-    margin-top: 8px;
-    display: inline-block;
-  }
-  
-  .highlight-text-container .journal-link:hover {
-    text-decoration: underline;
-  }
-  
-  @media (max-width: 768px) {
-    .highlight-card {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-    .highlight-text-container .summary p,
-    .highlight-text-container .authors,
-    .highlight-text-container .journal-link {
-      text-align: center;
-    }
-  }
-  
