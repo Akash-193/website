@@ -41,15 +41,23 @@ if (dotsContainer && slides.length > 0) {
   });
 }
 
-// === ACTIVE MENU HIGHLIGHT ===
-const navLinks = document.querySelectorAll("nav ul li a");
-const currentPage = window.location.pathname.split("/").pop().split(".")[0];
-navLinks.forEach(link => {
-  if (link.getAttribute("href").includes(currentPage)) {
-    link.classList.add("active");
-  } else {
-    link.classList.remove("active");
-  }
+// === NAV ACTIVE HIGHLIGHT ===
+document.addEventListener('DOMContentLoaded', function() {
+    const navLinks = document.querySelectorAll("nav ul li a");
+    const currentPath = window.location.pathname;
+
+    navLinks.forEach(link => {
+        const linkPath = new URL(link.href).pathname;
+
+        // Special check for the homepage
+        if ((currentPath === '/' || currentPath === '/index.html') && (linkPath === '/' || linkPath === '/index.html')) {
+            link.classList.add('active');
+        } 
+        // Check for other pages, but make sure it's not the homepage link
+        else if (linkPath !== '/' && linkPath !== '/index.html' && currentPath === linkPath) {
+            link.classList.add('active');
+        }
+    });
 });
 
 // === SANITY CLIENT ===
@@ -73,6 +81,7 @@ const pageTitleMap = {
   contact: "Contact"
 };
 
+const currentPage = window.location.pathname.split("/").pop().split(".")[0];
 const page = currentPage || "index";
 const titleId = `${page}-title`;
 const descId = `${page}-description`;
