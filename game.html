@@ -171,34 +171,29 @@
 
     <div class="modal-overlay" id="modal-overlay"></div>
     <div class="modal" id="success-modal"></div>
-    
+
     <script>
         // --- Password Configuration ---
-        const encodedAccessCode = 'QnVtYmxl'; 
+        const encodedAccessCode = 'YnVtYmxl'; // This is 'LUNCH' encoded
 
         // --- Protection Logic ---
         function checkAccess() {
             const enteredCode = prompt("Please enter the access code to play:");
             const gameContent = document.getElementById('game-content');
             
-            // atob() is a built-in browser function to decode Base64
             const decodedAccessCode = atob(encodedAccessCode);
 
             if (enteredCode === decodedAccessCode) {
-                gameContent.style.display = 'block';
-                initializeGame();
+                gameContent.style.display = 'block'; // Show the game
+                initializeGame(); // Start the game only if the password is correct
             } else {
                 alert("Sorry, that's not the right code.");
-                window.location.href = 'index.html';
+                window.location.href = 'index.html'; // Redirect to homepage
             }
         }
-        
-        checkAccess();
-    </script>
 
-    <script>
+        // --- Game Logic ---
         function initializeGame() {
-            // --- Game Configuration ---
             const pairs = [
                 ['Salt', 'Pepper'],
                 ['Bread', 'Butter'],
@@ -209,7 +204,6 @@
             ];
             const successMessage = "Perfect Match! 😉<br>Let's test this over lunch this Saturday?";
 
-            // --- Game Logic ---
             const gameBoard = document.getElementById('game-board');
             const gameMessage = document.getElementById('game-message');
             const successModal = document.getElementById('success-modal');
@@ -234,27 +228,21 @@
                     const card = document.createElement('div');
                     card.classList.add('card');
                     card.dataset.value = value;
-
                     const cardInner = document.createElement('div');
                     cardInner.classList.add('card-inner');
-
                     const cardFront = document.createElement('div');
                     cardFront.classList.add('card-face', 'card-front');
-                    
                     if (specialPair.includes(value)) {
                         card.dataset.locked = 'true';
                         cardFront.classList.add('locked');
                     }
-
                     const cardBack = document.createElement('div');
                     cardBack.classList.add('card-face', 'card-back');
                     cardBack.textContent = value;
-
                     cardInner.appendChild(cardFront);
                     cardInner.appendChild(cardBack);
                     card.appendChild(cardInner);
                     gameBoard.appendChild(card);
-                    
                     card.addEventListener('click', () => flipCard(card));
                 });
             }
@@ -265,7 +253,6 @@
                 }
                 card.classList.add('flipped');
                 flippedCards.push(card);
-
                 if (flippedCards.length === 2) {
                     checkForMatch();
                 }
@@ -276,7 +263,6 @@
                 const [card1, card2] = flippedCards;
                 const value1 = card1.dataset.value;
                 const value2 = card2.dataset.value;
-
                 let isMatch = false;
                 for (const pair of pairs) {
                     if ((pair[0] === value1 && pair[1] === value2) || (pair[0] === value2 && pair[1] === value1)) {
@@ -284,7 +270,6 @@
                         break;
                     }
                 }
-
                 if (isMatch) {
                     disableCards();
                 } else {
@@ -297,11 +282,9 @@
                 flippedCards[1].classList.add('matched');
                 matchedPairs++;
                 resetBoard();
-                
                 if (matchedPairs === pairs.length - 1) {
                     unlockSpecialCards();
                 }
-
                 if (matchedPairs === pairs.length) {
                     setTimeout(() => {
                         showSuccessModal();
