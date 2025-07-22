@@ -45,6 +45,9 @@ if (dotsContainer && slides.length > 0) {
 import sanityClient from './sanityClient.js';
 import blockContentToHtml from 'https://cdn.skypack.dev/@sanity/block-content-to-html';
 
+// Re-add this line to define the current page
+const currentPage = window.location.pathname.split("/").pop().split(".")[0];
+
 const pageTitleMap = {
     index: "Home",
     about: "About",
