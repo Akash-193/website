@@ -45,7 +45,6 @@ if (dotsContainer && slides.length > 0) {
 import sanityClient from './sanityClient.js';
 import blockContentToHtml from 'https://cdn.skypack.dev/@sanity/block-content-to-html';
 
-// Re-add this line to define the current page
 const currentPage = window.location.pathname.split("/").pop().split(".")[0];
 
 const pageTitleMap = {
@@ -83,7 +82,6 @@ if (document.getElementById(descId)) {
 // === PUBLICATIONS PAGE LOGIC ===
 const publicationList = document.getElementById('publication-list');
 if (publicationList) {
-    // Updated fetch query for new fields
     sanityClient.fetch(`*[_type == "publication"] | order(year desc) {
         title,
         authors,
@@ -108,7 +106,7 @@ if (publicationList) {
 }
 
 function renderPublications(publications) {
-    publicationList.innerHTML = ''; // Clear the "Loading..." text
+    publicationList.innerHTML = ''; 
     
     const grid = document.createElement('div');
     grid.className = 'highlights-grid';
@@ -117,7 +115,7 @@ function renderPublications(publications) {
         const itemWrapper = document.createElement('div');
         itemWrapper.dataset.tags = pub.tags ? pub.tags.join(',') : '';
 
-        // Generate the HTML for the highlight card with new containers
+        // Generate the HTML for the highlight card
         const cardHTML = `
             <div class="highlight-card">
                 ${pub.imageUrl ? `
@@ -145,7 +143,7 @@ function renderPublications(publications) {
 
 function setupFilters(publications) {
     const filterContainer = document.getElementById('filter-buttons');
-    if (!filterContainer) return; // Exit if no filter container
+    if (!filterContainer) return; 
     
     const allTags = new Set();
     publications.forEach(pub => {
@@ -154,14 +152,12 @@ function setupFilters(publications) {
         }
     });
 
-    // Create the "All" button
     const allButton = document.createElement('button');
     allButton.className = 'filter-btn active';
     allButton.innerText = 'All';
     allButton.addEventListener('click', () => filterPublications('all'));
     filterContainer.appendChild(allButton);
 
-    // Create buttons for each tag
     allTags.forEach(tag => {
         const button = document.createElement('button');
         button.className = 'filter-btn';
@@ -172,7 +168,6 @@ function setupFilters(publications) {
 }
 
 function filterPublications(tag) {
-    // The querySelector should target the 'div's inside the grid
     const items = document.querySelectorAll('#publication-list .highlights-grid > div');
     const buttons = document.querySelectorAll('.filter-btn');
 
@@ -185,7 +180,6 @@ function filterPublications(tag) {
     });
     
     items.forEach(item => {
-        // Check dataset.tags on the wrapper div
         if (tag === 'all' || (item.dataset.tags && item.dataset.tags.includes(tag))) {
             item.style.display = 'block';
         } else {
