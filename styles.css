@@ -411,15 +411,15 @@ p {
     background-color: #fff;
     border: 1px solid #dee2e6;
     padding: 20px;
-    display: flex; /* <-- Add this to enable flexbox */
-    gap: 20px; /* <-- Adds space between the image and text */
-    align-items: flex-start; /* Aligns items to the top */
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
 }
 
-/* New container for the image */
+/* Container for the image */
 .highlight-image-container {
-    flex: 0 0 150px; /* Flex-shrink: 0, Flex-grow: 0, Basis: 150px width */
-    width: 150px;
+    flex: 0 0 200px; /* Increased width from 150px to 200px */
+    width: 200px;
 }
 
 .highlight-card img {
@@ -428,9 +428,9 @@ p {
     box-shadow: 0 4px 8px rgba(0,0,0,0.1), 0 6px 20px rgba(0,0,0,0.1);
 }
 
-/* New container for the text content */
+/* Container for the text content */
 .highlight-text-container {
-    flex: 1; /* Allows this container to take up the remaining space */
+    flex: 1;
 }
 
 .highlight-text-container h3 {
@@ -440,15 +440,22 @@ p {
 }
 
 .highlight-text-container .summary {
-    font-size: 1em;
+    font-size: 0.95em; /* Slightly smaller font size */
     color: #555;
     line-height: 1.6;
     margin-bottom: 15px;
 }
 
+/* This new rule fixes the text alignment issue */
+.highlight-text-container .summary p {
+    text-align: left;
+    max-width: 100%;
+}
+
 .highlight-text-container .authors {
-    font-size: 0.9em;
+    font-size: 0.85em; /* Slightly smaller font size */
     color: #777;
+    text-align: left; /* Fixes alignment for the author list */
 }
 
 .highlight-text-container .journal-link {
@@ -465,17 +472,20 @@ p {
 }
 
 /* Update mobile view to stack them again */
-@media (max-width: 992px) { /* Adjusted breakpoint for better stacking */
+@media (max-width: 992px) {
     .highlights-grid {
         grid-template-columns: 1fr;
     }
     .highlight-card {
-        flex-direction: column; /* Stack image and text vertically on smaller screens */
+        flex-direction: column;
         align-items: center;
         text-align: center;
     }
     .highlight-image-container {
-       width: 60%; /* Allow image to be a bit bigger on mobile */
+       width: 60%;
        margin-bottom: 20px;
+    }
+    .highlight-text-container .summary p, .highlight-text-container .authors {
+        text-align: center; /* Center text on mobile */
     }
 }

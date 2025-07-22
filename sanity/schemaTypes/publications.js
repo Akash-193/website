@@ -19,7 +19,20 @@ export default {
       title: 'Summary',
       description: 'A short, one or two-sentence summary for the highlight card.',
       type: 'array',
-      of: [{type: 'block'}]
+      of: [
+        { 
+          type: 'block',
+          // This 'marks' section enables extra formatting options
+          marks: {
+            decorators: [
+              {title: 'Strong', value: 'strong'},
+              {title: 'Emphasis', value: 'em'},
+              {title: 'Subscript', value: 'sub'},
+              {title: 'Superscript', value: 'sup'}
+            ]
+          }
+        }
+      ]
     },
     {
       name: 'authors',
