@@ -413,7 +413,6 @@ p {
     padding: 20px;
     display: flex;
     gap: 20px;
-    /* align-items: flex-start; <-- REMOVED this line to allow text to fill the height */
 }
 
 /* Container for the image */
@@ -431,8 +430,8 @@ p {
 /* Container for the text content */
 .highlight-text-container {
     flex: 1;
-    display: flex; /* Added to help with vertical layout */
-    flex-direction: column; /* Stack text elements vertically */
+    display: flex;
+    flex-direction: column;
 }
 
 .highlight-text-container h3 {
