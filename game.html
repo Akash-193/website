@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>A Little Game...</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+        /* This new rule hides the game content by default */
+        #game-content {
+            display: none;
+        }
+        .game-container {
+            max-width: 800px;
+            margin: 40px auto;
+            text-align: center;
+            position: relative; 
+        }
+        #game-board {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .card {
+            width: 100%;
+            height: 120px;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+        .card.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: bold;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .card-front {
+            background-color: #007bff;
+        }
+        .card-front.locked {
+            background-color: #ffc107; 
+        }
+        .card-back {
+            background-color: #f0f0f0;
+            color: black;
+            transform: rotateY(180deg);
+        }
+        .card.matched {
+            opacity: 0.5;
+            cursor: default;
+        }
+        #game-message {
+            margin-top: 30px;
+            font-size: 1.5em;
+            font-weight: bold;
+            min-height: 50px;
+        }
+        /* --- Modal Animation Styles --- */
+        .modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background-color: white;
+            padding: 40px 60px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            z-index: 1000;
+            text-align: center;
+            font-size: 2em;
+            color: #333;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            visibility: hidden;
+        }
+        .modal.show {
+            transform: translate(-50%, -50%) scale(1);
+            visibility: visible;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            visibility: hidden;
+        }
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* --- Mobile Styles --- */
+        @media (max-width: 768px) {
+            .game-container {
+                padding: 0 20px; 
+            }
+            #game-board {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 10px;
+            }
+            .card {
+                height: 90px;
+            }
+            .card-face {
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="index.html">
+                <img src="logo.png" alt="Akash Krishna Logo">
+                <span>Akash Krishna</span>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="thesis.html">Thesis</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><a href="game.html">Game</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <hr class="nav-line" />
+
+    <div id="game-content">
+        <div class="content">
+            <h1>Memory Match</h1>
+            <hr class="title-line" />
+
+            <div style="max-width: 80%; margin: 0 auto 30px auto;">
+                <h3 style="text-align: center;">How to Play</h3>
+                <p style="text-align: justify;">Find all the matching pairs by clicking on the cards!</p>
+            </div>
+            
+            <div class="game-container">
+                <div id="game-board"></div>
+                <div id="game-message"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="modal-overlay"></div>
+    <div class="modal" id="success-modal"></div>
+
+    <script>
+        // --- Password Configuration ---
+        const encodedAccessCode = 'YmFyYmE='; 
+
+        // --- Protection Logic ---
+        function checkAccess() {
+            const enteredCode = prompt("Please enter the access code to play:");
+            const gameContent = document.getElementById('game-content');
+            
+            const decodedAccessCode = atob(encodedAccessCode);
+
+            if (enteredCode === decodedAccessCode) {
+                gameContent.style.display = 'block'; // Show the game
+                initializeGame(); // Start the game only if the password is correct
+            } else {
+                alert("Sorry, that's not the right code.");
+                window.location.href = 'index.html'; // Redirect to homepage
+            }
+        }
+
+        // --- Game Logic ---
+        function initializeGame() {
+            const pairs = [
+                ['Salt', 'Pepper'],
+                ['Bread', 'Butter'],
+                ['Day', 'Night'],
+                ['Sun', 'Moon'],
+                ['Coffee', 'Tea'],
+                ['Barba', 'Akash'] 
+            ];
+            const successMessage = "Perfect Match! 😉<br>Let's test this over Dinner tonight?";
+
+            const gameBoard = document.getElementById('game-board');
+            const gameMessage = document.getElementById('game-message');
+            const successModal = document.getElementById('success-modal');
+            const modalOverlay = document.getElementById('modal-overlay');
+
+            const specialPair = pairs[pairs.length - 1];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let lockBoard = false;
+
+            function shuffle(array) {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+                return array;
+            }
+
+            function createBoard() {
+                const cardValues = shuffle(pairs.flat());
+                cardValues.forEach(value => {
+                    const card = document.createElement('div');
+                    card.classList.add('card');
+                    card.dataset.value = value;
+                    const cardInner = document.createElement('div');
+                    cardInner.classList.add('card-inner');
+                    const cardFront = document.createElement('div');
+                    cardFront.classList.add('card-face', 'card-front');
+                    if (specialPair.includes(value)) {
+                        card.dataset.locked = 'true';
+                        cardFront.classList.add('locked');
+                    }
+                    const cardBack = document.createElement('div');
+                    cardBack.classList.add('card-face', 'card-back');
+                    cardBack.textContent = value;
+                    cardInner.appendChild(cardFront);
+                    cardInner.appendChild(cardBack);
+                    card.appendChild(cardInner);
+                    gameBoard.appendChild(card);
+                    card.addEventListener('click', () => flipCard(card));
+                });
+            }
+            
+            function flipCard(card) {
+                if (lockBoard || card.classList.contains('flipped') || card.dataset.locked === 'true') {
+                    return;
+                }
+                card.classList.add('flipped');
+                flippedCards.push(card);
+                if (flippedCards.length === 2) {
+                    checkForMatch();
+                }
+            }
+
+            function checkForMatch() {
+                lockBoard = true;
+                const [card1, card2] = flippedCards;
+                const value1 = card1.dataset.value;
+                const value2 = card2.dataset.value;
+                let isMatch = false;
+                for (const pair of pairs) {
+                    if ((pair[0] === value1 && pair[1] === value2) || (pair[0] === value2 && pair[1] === value1)) {
+                        isMatch = true;
+                        break;
+                    }
+                }
+                if (isMatch) {
+                    disableCards();
+                } else {
+                    unflipCards();
+                }
+            }
+
+            function disableCards() {
+                flippedCards[0].classList.add('matched');
+                flippedCards[1].classList.add('matched');
+                matchedPairs++;
+                resetBoard();
+                if (matchedPairs === pairs.length - 1) {
+                    unlockSpecialCards();
+                }
+                if (matchedPairs === pairs.length) {
+                    setTimeout(() => {
+                        showSuccessModal();
+                    }, 500);
+                }
+            }
+            
+            function unlockSpecialCards() {
+                gameMessage.textContent = 'One special pair left...';
+                document.querySelectorAll('[data-locked="true"]').forEach(card => {
+                    card.dataset.locked = 'false';
+                });
+            }
+
+            function showSuccessModal() {
+                gameMessage.textContent = '';
+                successModal.innerHTML = successMessage;
+                modalOverlay.classList.add('show');
+                successModal.classList.add('show');
+            }
+
+            function unflipCards() {
+                setTimeout(() => {
+                    flippedCards[0].classList.remove('flipped');
+                    flippedCards[1].classList.remove('flipped');
+                    resetBoard();
+                }, 1000);
+            }
+            
+            function resetBoard() {
+                [flippedCards, lockBoard] = [[], false];
+            }
+
+            createBoard();
+        }
+
+        // Run the access check when the page loads
+        checkAccess();
+    </script>
+<footer class="site-footer">
+    <div class="footer-left">
+        <p>&copy; 2025 Akash Krishna.</p>
+        <p class="credits">Site made with Netlify and Sanity.</p>
+    </div>
+    <div class="footer-right">
+        <div class="social-icons">
+            </div>
+        <a href="contact.html" class="footer-contact">Connect</a>
+    </div>
+</footer>
+
+</body>
+</html>
